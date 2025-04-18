@@ -2,8 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "algoOrdena.h"
+#include "algoritmosOrdenacao.h"
 
-void menuprincipal(int slcAlgoritmo, int slcQuantidade){
+void menuprincipal(){
+    int slcAlgoritmo;
+    int slcQuantidade;
     printf("///////////////////\n");
     printf("MENU PRINCIPAL\n");
     printf("///////////////////\n");
@@ -19,7 +22,7 @@ void menuprincipal(int slcAlgoritmo, int slcQuantidade){
     printf("9 - RadixSort\n");
     printf("10 - CountingSort\n");
     printf("11 - TimSort\n");
-    printf("Digite o numero corresponde: ")
+    printf("Digite o numero corresponde: ");
     scanf("%d", &slcAlgoritmo);
 
     switch(slcAlgoritmo){

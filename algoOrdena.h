@@ -1,8 +1,8 @@
 #ifndef ALGOORDENA_H_INCLUDED
 #define ALGOORDENA_H_INCLUDED
 
-int slcAlgoritmo;
-int slcQuantidade;
+void menuprincipal();
+void menuquantidade();
 
 
 #endif // ALGOORDENA_H_INCLUDED

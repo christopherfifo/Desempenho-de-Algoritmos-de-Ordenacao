@@ -31,6 +31,14 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="algoOrdena.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="algoOrdena.h" />
+		<Unit filename="algoritmosOrdenacao.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="algoritmosOrdenacao.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
