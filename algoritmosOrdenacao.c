@@ -1,10 +1,29 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/time.h>
 #include "algoritmosOrdenacao.h"
+#include "algoOrdena.h"
+
+int elementoDaestrutura = 0;
+
+struct timeval{
+    long int tv_sec; 
+    long int tv_usec; 
+};   
+struct Algoritimo{
+    char nome[40];
+    int tamanho;
+    float tempoTotal;
+    float melhorCaso;
+    float piorCaso;
+};
+
+struct Algoritimo Algoritimos[10]; 
 
 void countingSort(int inputArray[], int numElementos) {
-    // 1º Passo:
-    // Encontrar o maior número no array
+    // 1ï¿½ Passo:
+    // Encontrar o maior nï¿½mero no array
     int maiorNumero = 0;
     for (int i = 0; i < numElementos; i++){
         if (inputArray[i] > maiorNumero){
@@ -12,21 +31,21 @@ void countingSort(int inputArray[], int numElementos) {
         }
     }
 
-    // 2º Passo:
+    // 2ï¿½ Passo:
     // Inicializar um array auxiliar, sendo que
-    // o tamanho dele será igual ao MAIOR NÚMERO
+    // o tamanho dele serï¿½ igual ao MAIOR Nï¿½MERO
     // encontrado no array de input
     int* auxArray = (int*)calloc(maiorNumero + 1, sizeof(int));
 
-    // 3º Passo:
-    // Utilizaremos os índices do array auxiliar
-    // para contabilizar a quantidade de aparições
-    // de cada número no nosso array de input
+    // 3ï¿½ Passo:
+    // Utilizaremos os ï¿½ndices do array auxiliar
+    // para contabilizar a quantidade de apariï¿½ï¿½es
+    // de cada nï¿½mero no nosso array de input
     for (int i = 0; i < numElementos; i++){
         auxArray[inputArray[i]]++;
     }
 
-    // 4º Passo:
+    // 4ï¿½ Passo:
     // Para cada index do array auxiliar
     // Calcularemos a soma acumulativa dos index anteriores
     // Ex: {0, 1, 4, 2, 0, 0, 1} -> {0, 1, 5, 7, 7, 7, 8}
@@ -34,27 +53,27 @@ void countingSort(int inputArray[], int numElementos) {
         auxArray[i] += auxArray[i - 1];
     }
 
-    // 5º Passo:
-    // Criamos o array de output, onde conterá os números ordenados
-    // Percorremos o array de input de trás para frente, garantindo
+    // 5ï¿½ Passo:
+    // Criamos o array de output, onde conterï¿½ os nï¿½meros ordenados
+    // Percorremos o array de input de trï¿½s para frente, garantindo
     // que elementos iguais mantenham a ordem original (estabilidade).
-    // Cada número é colocado na posição correta no array ordenado
-    // e decrementamos o array auxiliar para os números que já foram processados
+    // Cada nï¿½mero ï¿½ colocado na posiï¿½ï¿½o correta no array ordenado
+    // e decrementamos o array auxiliar para os nï¿½meros que jï¿½ foram processados
     int* arrayOrdenado = (int*)malloc(numElementos * sizeof(int));
     for (int i = numElementos - 1; i >= 0; i--){
         arrayOrdenado[auxArray[inputArray[i]] - 1] = inputArray[i];
         auxArray[inputArray[i]]--;
     }
 
-    // 6º Passo:
+    // 6ï¿½ Passo:
     // Copiaremos os elementos do array ordenado para o array de input
-    // Apenas faremos isso pois essa função não retorna um novo array,
-    // E sim ordena no próprio array que foi passado.
+    // Apenas faremos isso pois essa funï¿½ï¿½o nï¿½o retorna um novo array,
+    // E sim ordena no prï¿½prio array que foi passado.
     for (int i = 0; i < numElementos; i++){
         inputArray[i] = arrayOrdenado[i];
     }
 
-    // Liberando a memória alocada
+    // Liberando a memï¿½ria alocada
     free(auxArray);
     free(arrayOrdenado);
 }
@@ -117,9 +136,9 @@ void swap(int *a, int *b) {
     *b = temp;
 }
 
-// Função para criar um Max-Heap
+// Funï¿½ï¿½o para criar um Max-Heap
 void maxHeapify(int arr[], int n, int i) {
-    int largest = i; // Inicializa o maior como o nó
+    int largest = i; // Inicializa o maior como o nï¿½
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
@@ -135,7 +154,7 @@ void maxHeapify(int arr[], int n, int i) {
     }
 }
 
-// Função HeapSort usando Max-Heap (ordem crescente)
+// Funï¿½ï¿½o HeapSort usando Max-Heap (ordem crescente)
 void heapSortAscending(int arr[], int n) {
     for (int i = n / 2 - 1; i >= 0; i--)
         maxHeapify(arr, n, i);
@@ -160,5 +179,40 @@ void ShellSort(int arr[], int tam) {
 }
 
 
+void salvaResultados(char nome[], int tamanho, double tempoTotal, double melhorCaso, double piorCaso){
+    if (elementoDaestrutura >= 10) {
+        printf("Limite de algoritmos atingido.\n");
+        return -1;
+    }
+
+    strcpy(Algoritimos[elementoDaestrutura].nome, nome); 
+    Algoritimos[elementoDaestrutura].tamanho = tamanho;
+    Algoritimos[elementoDaestrutura].tempoTotal = tempoTotal;
+    Algoritimos[elementoDaestrutura].melhorCaso = melhorCaso;
+    Algoritimos[elementoDaestrutura].piorCaso = piorCaso;
+
+    elementoDaestrutura++;
+};
+
+void exibeTodosOsAlgoritmos(){
+    printf("Algoritmos Salvos:\n");
+    for (int i = 0; i < 10; i++){
+        printf("---------------ALGORITIMOS--------------------\n");
+        exibirAlgoritmo(Algoritimos[i].nome, Algoritimos[i].tamanho, Algoritimos[i].tempoTotal, Algoritimos[i].melhorCaso, Algoritimos[i].piorCaso);
+    }
+};
+
+double mediaTempo(int *v, int tamanho){
+
+    double totalTempo = 0.0;
+
+    for(int i = 0; i < tamanho; i++){
+       totalTempo += v[i];
+    }
+    
+    totalTempo = totalTempo / tamanho;
+
+    return totalTempo;
+}
 
 

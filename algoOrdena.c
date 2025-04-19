@@ -87,3 +87,15 @@ void menuquantidade(int slcQuantidade){
     scanf("%d", &slcQuantidade);
 
 }
+
+
+void exibirAlgoritmo(char nome[], int tamanho, double tempoTotal, double melhorCaso, double piorCaso){
+    printf("\n--------------------------------------------------\n");
+    printf("Algoritmo: %s\n", nome);
+    printf("Tamanho: %d\n", tamanho);
+    printf("Tempo Total: %.2f ms\n", tempoTotal);
+    printf("Melhor Caso: %.2f ms\n", melhorCaso);
+    printf("Pior Caso: %.2f ms\n", piorCaso);
+    printf("\n");
+};
+
