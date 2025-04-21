@@ -2,7 +2,7 @@ adicionei essas funções
 
 # algoOrdena.h
 
-void exibirAlgoritmo(char nome[], int tamanho, double tempoTotal, double melhorCaso, double piorCaso);
+void exibirAlgoritmo(char nome[], int tamanho, double tempoTotal, double media, double melhorCaso, double piorCaso);
 void exibeTodosOsAlgoritmos();
 
 # algoritimosOrdenacao.h
@@ -14,11 +14,12 @@ void salvaResultados( char nome[], int tamanho, double tempoTotal, double melhor
 
 # algoOrdena.c
 
-void exibirAlgoritmo(char nome[], int tamanho, double tempoTotal, double melhorCaso, double piorCaso){
+void exibirAlgoritmo(char nome[], int tamanho, double tempoTotal, double media, double melhorCaso, double piorCaso){
     printf("\n--------------------------------------------------\n");
     printf("Algoritmo: %s\n", nome);
     printf("Tamanho: %d\n", tamanho);
     printf("Tempo Total: %.2f ms\n", tempoTotal);
+    printf("Media: %.2f ms\n", media);
     printf("Melhor Caso: %.2f ms\n", melhorCaso);
     printf("Pior Caso: %.2f ms\n", piorCaso);
     printf("\n");

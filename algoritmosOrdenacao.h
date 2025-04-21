@@ -12,6 +12,7 @@ typedef struct
     char nome[40];
     int tamanho;
     double tempoTotal;
+    double media;
     double melhorCaso;
     double piorCaso;
 } Algoritmo;
@@ -57,12 +58,12 @@ void inverteVetor(int *array, int tamanho);
 
 void liberarVetor(int *array);
 
-double mediaTempo(int *v, int tamanho);
+double mediaTempo(double *tempos, int tamanho);
 
-int salvaResultados(char nome[], int tamanho, double tempoTotal, double melhorCaso, double piorCaso);
+int salvaResultados(char nome[], int tamanho, double tempoTotal, double media, double melhorCaso, double piorCaso);
 
 void imprimirVetor(int vetor[], int tamanho);
 
-void exibirAlgoritmo(char nome[], int tamanho, double tempoTotal, double melhorCaso, double piorCaso);
+void exibirAlgoritmo(char nome[], int tamanho, double tempoTotal, double media, double melhorCaso, double piorCaso);
 
 #endif // ALGORITMOSORDENACAO_H_INCLUDED

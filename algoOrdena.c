@@ -4,13 +4,14 @@
 #include "algoOrdena.h"
 #include "algoritmosOrdenacao.h"
 
-    int slcAlgoritmo;
-    int slcQuantidade;
+int slcAlgoritmo;
+int slcQuantidade;
 
-void menuprincipal(){
+void menuprincipal()
+{
 
     int vetorInvertido = NULL;
-    
+
     printf("///////////////////\n");
     printf("MENU PRINCIPAL\n");
     printf("///////////////////\n");
@@ -30,419 +31,394 @@ void menuprincipal(){
     printf("Digite o numero corresponde: ");
     scanf("%d", &slcAlgoritmo);
 
-    switch(slcAlgoritmo) {
-        // Bubble Sort
-        case 1: {
-            menuquantidade(slcQuantidade);
-    
-            for (int i = 0; i < 10; i++) {
-                int *vetor = criaVetor(slcQuantidade);
-                if (vetor == NULL) {
-                    printf("Erro ao alocar memória\n");
-                    return;
-                }
-                printf("\nVetor de %d elementos:\n", slcQuantidade);
-                imprimirVetor(vetor, slcQuantidade);
-                printf("\n\n");
-        
-                bubbleSort(vetor, slcQuantidade, &vetorInvertido);
-                printf("Bubble Sort: ");
-                imprimirVetor(vetor, slcQuantidade);
-                liberarVetor(vetor);
-            }
-            
+    switch (slcAlgoritmo)
+    {
+    // Bubble Sort
+    case 1:
+    {
+        menuquantidade(slcQuantidade);
+
+        for (int i = 0; i < 10; i++)
+        {
             int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL) {
+            if (vetor == NULL)
+            {
                 printf("Erro ao alocar memória\n");
                 return;
             }
-    
-            printf("\nVetor ordenado:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             bubbleSort(vetor, slcQuantidade, &vetorInvertido);
-            
-            printf("Vetor invertido:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             liberarVetor(vetor);
         }
-        break;
-    
-        // Insertion Sort
-        case 2: {
-            menuquantidade(slcQuantidade);
-    
-            for (int i = 0; i < 10; i++) {
-                int *vetor = criaVetor(slcQuantidade);
-                if (vetor == NULL) {
-                    printf("Erro ao alocar memória\n");
-                    return;
-                }
-                printf("\nVetor de %d elementos:\n", slcQuantidade);
-                imprimirVetor(vetor, slcQuantidade);
-                printf("\n\n");
-        
-                insertSort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
-                printf("Insertion Sort: ");
-                imprimirVetor(vetor, slcQuantidade);
-                liberarVetor(vetor);
-            }
-            
+
+        int *vetor = criaVetor(slcQuantidade);
+        if (vetor == NULL)
+        {
+            printf("Erro ao alocar memória\n");
+            return;
+        }
+
+        bubbleSort(vetor, slcQuantidade, &vetorInvertido);
+
+        liberarVetor(vetor);
+    }
+    break;
+
+    // Insertion Sort
+    case 2:
+    {
+        menuquantidade(slcQuantidade);
+
+        for (int i = 0; i < 10; i++)
+        {
             int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL) {
+            if (vetor == NULL)
+            {
                 printf("Erro ao alocar memória\n");
                 return;
             }
-    
-            printf("\nVetor ordenado:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             insertSort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
-            
-            printf("Vetor invertido:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             liberarVetor(vetor);
         }
-        break;
-    
-        // Selection Sort
-        case 3: {
-            menuquantidade(slcQuantidade);
-    
-            for (int i = 0; i < 10; i++) {
-                int *vetor = criaVetor(slcQuantidade);
-                if (vetor == NULL) {
-                    printf("Erro ao alocar memória\n");
-                    return;
-                }
-                printf("\nVetor de %d elementos:\n", slcQuantidade);
-                imprimirVetor(vetor, slcQuantidade);
-                printf("\n\n");
-        
-                selectionSort(vetor, slcQuantidade, &vetorInvertido);
-                printf("Selection Sort: ");
-                imprimirVetor(vetor, slcQuantidade);
-                liberarVetor(vetor);
-            }
-            
+
+        int *vetor = criaVetor(slcQuantidade);
+        if (vetor == NULL)
+        {
+            printf("Erro ao alocar memória\n");
+            return;
+        }
+
+        insertSort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
+
+        liberarVetor(vetor);
+    }
+    break;
+
+    // Selection Sort
+    case 3:
+    {
+        menuquantidade(slcQuantidade);
+
+        for (int i = 0; i < 10; i++)
+        {
             int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL) {
+            if (vetor == NULL)
+            {
                 printf("Erro ao alocar memória\n");
                 return;
             }
-    
-            printf("\nVetor ordenado:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             selectionSort(vetor, slcQuantidade, &vetorInvertido);
-            
-            printf("Vetor invertido:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             liberarVetor(vetor);
         }
-        break;
-    
-        // Shell Sort
-        case 4: {
-            menuquantidade(slcQuantidade);
-    
-            for (int i = 0; i < 10; i++) {
-                int *vetor = criaVetor(slcQuantidade);
-                if (vetor == NULL) {
-                    printf("Erro ao alocar memória\n");
-                    return;
-                }
-                printf("\nVetor de %d elementos:\n", slcQuantidade);
-                imprimirVetor(vetor, slcQuantidade);
-                printf("\n\n");
-        
-                ShellSort(vetor, slcQuantidade, &vetorInvertido);
-                printf("Shell Sort: ");
-                imprimirVetor(vetor, slcQuantidade);
-                liberarVetor(vetor);
-            }
-            
+
+        int *vetor = criaVetor(slcQuantidade);
+        if (vetor == NULL)
+        {
+            printf("Erro ao alocar memória\n");
+            return;
+        }
+
+        selectionSort(vetor, slcQuantidade, &vetorInvertido);
+
+        liberarVetor(vetor);
+    }
+    break;
+
+    // Shell Sort
+    case 4:
+    {
+        menuquantidade(slcQuantidade);
+
+        for (int i = 0; i < 10; i++)
+        {
             int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL) {
+            if (vetor == NULL)
+            {
                 printf("Erro ao alocar memória\n");
                 return;
             }
-    
-            printf("\nVetor ordenado:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             ShellSort(vetor, slcQuantidade, &vetorInvertido);
-            
-            printf("Vetor invertido:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             liberarVetor(vetor);
         }
-        break;
-    
-        // Merge Sort 
-        case 5: {
-            menuquantidade(slcQuantidade);
-    
-            for (int i = 0; i < 10; i++) {
-                int *vetor = criaVetor(slcQuantidade);
-                if (vetor == NULL) {
-                    printf("Erro ao alocar memória\n");
-                    return;
-                }
-                printf("\nVetor de %d elementos:\n", slcQuantidade);
-                imprimirVetor(vetor, slcQuantidade);
-                printf("\n\n");
-        
-                mergesort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
-                printf("Merge Sort: ");
-                imprimirVetor(vetor, slcQuantidade);
-                liberarVetor(vetor);
-            }
-            
+
+        int *vetor = criaVetor(slcQuantidade);
+        if (vetor == NULL)
+        {
+            printf("Erro ao alocar memória\n");
+            return;
+        }
+
+        ShellSort(vetor, slcQuantidade, &vetorInvertido);
+
+        liberarVetor(vetor);
+    }
+    break;
+
+    // Merge Sort
+    case 5:
+    {
+        menuquantidade(slcQuantidade);
+
+        for (int i = 0; i < 10; i++)
+        {
             int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL) {
+            if (vetor == NULL)
+            {
                 printf("Erro ao alocar memória\n");
                 return;
             }
-    
-            printf("\nVetor ordenado:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             mergesort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
-            
-            printf("Vetor invertido:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             liberarVetor(vetor);
         }
-        break;
-    
-        // Quick Sort
-        case 6: {
-            menuquantidade(slcQuantidade);
-    
-            for (int i = 0; i < 10; i++) {
-                int *vetor = criaVetor(slcQuantidade);
-                if (vetor == NULL) {
-                    printf("Erro ao alocar memória\n");
-                    return;
-                }
-                printf("\nVetor de %d elementos:\n", slcQuantidade);
-                imprimirVetor(vetor, slcQuantidade);
-                printf("\n\n");
-        
-                quickSort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
-                printf("Quick Sort: ");
-                imprimirVetor(vetor, slcQuantidade);
-                liberarVetor(vetor);
-            }
-            
+
+        int *vetor = criaVetor(slcQuantidade);
+        if (vetor == NULL)
+        {
+            printf("Erro ao alocar memória\n");
+            return;
+        }
+
+        mergesort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
+
+        liberarVetor(vetor);
+    }
+    break;
+
+    // Quick Sort
+    case 6:
+    {
+        menuquantidade(slcQuantidade);
+
+        for (int i = 0; i < 10; i++)
+        {
             int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL) {
+            if (vetor == NULL)
+            {
                 printf("Erro ao alocar memória\n");
                 return;
             }
-    
-            printf("\nVetor ordenado:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             quickSort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
-            
-            printf("Vetor invertido:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             liberarVetor(vetor);
         }
-        break;
-    
-        // Heap Sort
-        case 7: {
-            menuquantidade(slcQuantidade);
-    
-            for (int i = 0; i < 10; i++) {
-                int *vetor = criaVetor(slcQuantidade);
-                if (vetor == NULL) {
-                    printf("Erro ao alocar memória\n");
-                    return;
-                }
-                printf("\nVetor de %d elementos:\n", slcQuantidade);
-                imprimirVetor(vetor, slcQuantidade);
-                printf("\n\n");
-        
-                heapSortAscending(vetor, slcQuantidade, &vetorInvertido);
-                printf("Heap Sort: ");
-                imprimirVetor(vetor, slcQuantidade);
-                liberarVetor(vetor);
-            }
-            
+
+        int *vetor = criaVetor(slcQuantidade);
+        if (vetor == NULL)
+        {
+            printf("Erro ao alocar memória\n");
+            return;
+        }
+
+        quickSort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
+
+        liberarVetor(vetor);
+    }
+    break;
+
+    // Heap Sort
+    case 7:
+    {
+        menuquantidade(slcQuantidade);
+
+        for (int i = 0; i < 10; i++)
+        {
             int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL) {
+            if (vetor == NULL)
+            {
                 printf("Erro ao alocar memória\n");
                 return;
             }
-    
-            printf("\nVetor ordenado:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             heapSortAscending(vetor, slcQuantidade, &vetorInvertido);
-            
-            printf("Vetor invertido:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             liberarVetor(vetor);
         }
-        break;
-    
-        // Bucket Sort
-        case 8: {
-            menuquantidade(slcQuantidade);
-    
-            for (int i = 0; i < 10; i++) {
-                int *vetor = criaVetor(slcQuantidade);
-                if (vetor == NULL) {
-                    printf("Erro ao alocar memória\n");
-                    return;
-                }
-                printf("\nVetor de %d elementos:\n", slcQuantidade);
-                imprimirVetor(vetor, slcQuantidade);
-                printf("\n\n");
-        
-                bucketSort(vetor, slcQuantidade, &vetorInvertido);
-                printf("Bucket Sort: ");
-                imprimirVetor(vetor, slcQuantidade);
-                liberarVetor(vetor);
-            }
-            
+
+        int *vetor = criaVetor(slcQuantidade);
+        if (vetor == NULL)
+        {
+            printf("Erro ao alocar memória\n");
+            return;
+        }
+
+        heapSortAscending(vetor, slcQuantidade, &vetorInvertido);
+
+        liberarVetor(vetor);
+    }
+    break;
+
+    // Bucket Sort
+    case 8:
+    {
+        menuquantidade(slcQuantidade);
+
+        for (int i = 0; i < 10; i++)
+        {
             int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL) {
+            if (vetor == NULL)
+            {
                 printf("Erro ao alocar memória\n");
                 return;
             }
-    
-            printf("\nVetor ordenado:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             bucketSort(vetor, slcQuantidade, &vetorInvertido);
-            
-            printf("Vetor invertido:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             liberarVetor(vetor);
         }
-        break;
-    
-        // Radix Sort
-        case 9: {
-            menuquantidade(slcQuantidade);
-    
-            for (int i = 0; i < 10; i++) {
-                int *vetor = criaVetor(slcQuantidade);
-                if (vetor == NULL) {
-                    printf("Erro ao alocar memória\n");
-                    return;
-                }
-                printf("\nVetor de %d elementos:\n", slcQuantidade);
-                imprimirVetor(vetor, slcQuantidade);
-                printf("\n\n");
-        
-                radixSort(vetor, slcQuantidade, &vetorInvertido);
-                printf("Radix Sort: ");
-                imprimirVetor(vetor, slcQuantidade);
-                liberarVetor(vetor);
-            }
-            
+
+        int *vetor = criaVetor(slcQuantidade);
+        if (vetor == NULL)
+        {
+            printf("Erro ao alocar memória\n");
+            return;
+        }
+
+        bucketSort(vetor, slcQuantidade, &vetorInvertido);
+
+        liberarVetor(vetor);
+    }
+    break;
+
+    // Radix Sort
+    case 9:
+    {
+        menuquantidade(slcQuantidade);
+
+        for (int i = 0; i < 10; i++)
+        {
             int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL) {
+            if (vetor == NULL)
+            {
                 printf("Erro ao alocar memória\n");
                 return;
             }
-    
-            printf("\nVetor ordenado:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             radixSort(vetor, slcQuantidade, &vetorInvertido);
-            
-            printf("Vetor invertido:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             liberarVetor(vetor);
         }
-        break;
-    
-        // Counting Sort
-        case 10: {
-            menuquantidade(slcQuantidade);
-    
-            for (int i = 0; i < 10; i++) {
-                int *vetor = criaVetor(slcQuantidade);
-                if (vetor == NULL) {
-                    printf("Erro ao alocar memória\n");
-                    return;
-                }
-                printf("\nVetor de %d elementos:\n", slcQuantidade);
-                imprimirVetor(vetor, slcQuantidade);
-                printf("\n\n");
-        
-                countingSort(vetor, slcQuantidade, &vetorInvertido);
-                printf("Counting Sort: ");
-                imprimirVetor(vetor, slcQuantidade);
-                liberarVetor(vetor);
-            }
-            
+
+        int *vetor = criaVetor(slcQuantidade);
+        if (vetor == NULL)
+        {
+            printf("Erro ao alocar memória\n");
+            return;
+        }
+
+        radixSort(vetor, slcQuantidade, &vetorInvertido);
+
+        liberarVetor(vetor);
+    }
+    break;
+
+    // Counting Sort
+    case 10:
+    {
+        menuquantidade(slcQuantidade);
+
+        double tempos[10];
+        for (int i = 0; i < 10; i++)
+        {
             int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL) {
+            if (vetor == NULL)
+            {
                 printf("Erro ao alocar memória\n");
                 return;
             }
-    
-            printf("\nVetor ordenado:\n");
-            imprimirVetor(vetor, slcQuantidade);
-            countingSort(vetor, slcQuantidade, &vetorInvertido);
-            
-            printf("Vetor invertido:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
+            TIME_IT(countingSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
+
             liberarVetor(vetor);
         }
-        break;
-    
-        // Tim Sort
-        case 11: {
-            menuquantidade(slcQuantidade);
-    
-            for (int i = 0; i < 10; i++) {
-                int *vetor = criaVetor(slcQuantidade);
-                if (vetor == NULL) {
-                    printf("Erro ao alocar memória\n");
-                    return;
-                }
-                printf("\nVetor de %d elementos:\n", slcQuantidade);
-                imprimirVetor(vetor, slcQuantidade);
-                printf("\n\n");
-        
-                timSort(vetor, slcQuantidade, &vetorInvertido);
-                printf("Tim Sort: ");
-                imprimirVetor(vetor, slcQuantidade);
-                liberarVetor(vetor);
+
+        int *vetor = criaVetor(slcQuantidade);
+        if (vetor == NULL)
+        {
+            printf("Erro ao alocar memória\n");
+            return;
+        }
+
+        countingSort(vetor, slcQuantidade, &vetorInvertido);
+
+        liberarVetor(vetor);
+
+        double media = mediaTempo(tempos, 10);
+        double melhor = tempos[0], pior = tempos[0];
+        double tempoTotal = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            tempoTotal += tempos[i];
+
+            if (i > 0)
+            {
+                if (tempos[i] < melhor)
+                    melhor = tempos[i];
+                if (tempos[i] > pior)
+                    pior = tempos[i];
             }
-            
+        }
+
+        salvaResultados("CountingSort", slcQuantidade, tempoTotal, media, melhor, pior);
+        exibirAlgoritmo("CountingSort", slcQuantidade, tempoTotal, media, melhor, pior);
+    }
+    break;
+
+    // Tim Sort
+    case 11:
+    {
+        menuquantidade(slcQuantidade);
+
+        for (int i = 0; i < 10; i++)
+        {
             int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL) {
+            if (vetor == NULL)
+            {
                 printf("Erro ao alocar memória\n");
                 return;
             }
-    
-            printf("\nVetor ordenado:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             timSort(vetor, slcQuantidade, &vetorInvertido);
-            
-            printf("Vetor invertido:\n");
-            imprimirVetor(vetor, slcQuantidade);
+
             liberarVetor(vetor);
         }
+
+        int *vetor = criaVetor(slcQuantidade);
+        if (vetor == NULL)
+        {
+            printf("Erro ao alocar memória\n");
+            return;
+        }
+
+        timSort(vetor, slcQuantidade, &vetorInvertido);
+
+        liberarVetor(vetor);
+    }
+    break;
+
+    case 12:
+        printf("Saindo do programa...\n");
+        exit(0);
         break;
 
-        case 12:
-            printf("Saindo do programa...\n");
-            exit(0);
-            break;
-    
-        default:
-            printf("Opção inválida.\n");
-            menuprincipal();
-            break;
+    default:
+        printf("Opção inválida.\n");
+        menuprincipal();
+        break;
     }
-    
-    }
+}
 
-
-
-void menuquantidade(){
+void menuquantidade()
+{
     printf("//////////////////\n");
     printf("ESCOLHA A QUANTIDADE DE ELEMENTOS\n");
     printf("//////////////////\n");
@@ -455,7 +431,8 @@ void menuquantidade(){
     printf("7 - voltar para o menu principal\n");
     scanf("%d", &slcQuantidade);
 
-    switch(slcQuantidade){
+    switch (slcQuantidade)
+    {
     case 1:
         slcQuantidade = 10000;
         break;
@@ -465,7 +442,7 @@ void menuquantidade(){
     case 3:
         slcQuantidade = 100000;
         break;
-    case 4: 
+    case 4:
         slcQuantidade = 200000;
         break;
     case 5:
@@ -483,5 +460,4 @@ void menuquantidade(){
         break;
     }
     printf("A quantidade de elementos escolhida foi: %d\n", slcQuantidade);
-
 }
