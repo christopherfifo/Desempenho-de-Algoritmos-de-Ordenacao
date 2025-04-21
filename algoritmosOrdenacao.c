@@ -2,12 +2,7 @@
 #include <stdlib.h>
 #include "algoritmosOrdenacao.h"
 
-int elementoDaestrutura = 0;
-
-struct timeval{
-    long int tv_sec; 
-    long int tv_usec; 
-};   
+int elementoDaestrutura = 0; 
 
 
 Algoritmo Algoritmos[11];
@@ -173,7 +168,7 @@ void ShellSort(int arr[], int tam, int *VetorInvetido) {
 
 //////// TIM SORT
 
-int min(int a, int b) {
+int minValue(int a, int b) {
     return (a < b) ? a : b;
 }
 
@@ -197,14 +192,14 @@ void timSort(int array[], int n, int *VetorInvetido) {
 
     // Ordena pequenas partes com insertion sort
     for (int i = 0; i < n; i += runSize) {
-        insertSort(array, i, min((i + runSize - 1), (n - 1)), VetorInvetido);
+        insertSort(array, i, minValue((i + runSize - 1), (n - 1)), VetorInvetido);
     }
 
     // Mescla as partes ordenadas usando mergesort
     for (int tam = runSize; tam < n; tam = 2 * tam) {
         for (int esq = 0; esq < n; esq += 2 * tam) {
             int meio = esq + tam - 1;
-            int dir = min((esq + 2 * tam - 1), (n - 1));
+            int dir = minValue((esq + 2 * tam - 1), (n - 1));
             if (meio < dir) {
                 mergesort(array, esq, dir, VetorInvetido);
             }

@@ -3,12 +3,10 @@
 #include "algoOrdena.h"
 #include "algoritmosOrdenacao.h"
 
+int main()
+{
 
-
-int main() {
-    
-
-menuprincipal();
+    menuprincipal();
 
     return 0;
 }

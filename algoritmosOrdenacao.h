@@ -1,15 +1,20 @@
 #ifndef ALGORITMOSORDENACAO_H_INCLUDED
 #define ALGORITMOSORDENACAO_H_INCLUDED
 
-typedef struct  timeval;  
+struct timeval
+{
+    long int tv_sec;
+    long int tv_usec;
+};
 
-typedef struct {
+typedef struct
+{
     char nome[40];
     int tamanho;
     double tempoTotal;
     double melhorCaso;
     double piorCaso;
-} Algoritmo;  
+} Algoritmo;
 
 // COUNTING SORT
 void countingSort(int inputArray[], int numElementos, int *VetorInvetido);
@@ -37,17 +42,16 @@ void radixSort(int *arr, int n, int *VetorInvetido);
 // QUICK SORT
 void quickSort(int arr[], int low, int high, int *VetorInvetido);
 
-
-//INSERTION SORT
+// INSERTION SORT
 void insertSort(int array[], int esq, int dir, int *VetorInvetido);
 
-//BUBBLE SORT
+// BUBBLE SORT
 void bubbleSort(int arr[], int n, int *VetorInvetido);
 
-//SELECT SORT
+// SELECT SORT
 void selectionSort(int arr[], int n, int *VetorInvetido);
 
-int* criaVetor(int tamanho);
+int *criaVetor(int tamanho);
 
 void inverteVetor(int *array, int tamanho);
 
@@ -55,7 +59,7 @@ void liberarVetor(int *array);
 
 double mediaTempo(int *v, int tamanho);
 
-int salvaResultados( char nome[], int tamanho, double tempoTotal, double melhorCaso, double piorCaso);
+int salvaResultados(char nome[], int tamanho, double tempoTotal, double melhorCaso, double piorCaso);
 
 void imprimirVetor(int vetor[], int tamanho);
 
