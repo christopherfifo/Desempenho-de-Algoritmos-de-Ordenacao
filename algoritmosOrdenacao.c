@@ -415,7 +415,7 @@ void exibeTodosOsAlgoritmos(){
         printf("---------------ALGORITIMOS--------------------\n");
         exibirAlgoritmo(Algoritmos[i].nome, Algoritmos[i].tamanho, Algoritmos[i].tempoTotal, Algoritmos[i].melhorCaso, Algoritmos[i].piorCaso);
     }
-};
+}
 
 double mediaTempo(int *v, int tamanho){
 
@@ -430,18 +430,18 @@ double mediaTempo(int *v, int tamanho){
     return totalTempo;
 }
 
-int criaVetor(int tamanho){
-    int *vetor = (int *)malloc(tamanho * sizeof(char));
+int* criaVetor(int tamanho) {
+    int *vetor = (int *)malloc(tamanho * sizeof(int));
     if (vetor == NULL) {
         printf("Erro ao alocar memória para o vetor.\n");
-        return NULL;
+        return NULL; 
     }
 
     for (int i = 0; i < tamanho; i++) {
         vetor[i] = rand() % tamanho; 
     }
 
-    return vetor;
+    return vetor;  
 }
 
 void liberarVetor(int *array){

@@ -6,9 +6,9 @@ typedef struct  timeval;
 typedef struct {
     char nome[40];
     int tamanho;
-    float tempoTotal;
-    float melhorCaso;
-    float piorCaso;
+    double tempoTotal;
+    double melhorCaso;
+    double piorCaso;
 } Algoritmo;  
 
 // COUNTING SORT
@@ -47,7 +47,7 @@ void bubbleSort(int arr[], int n, int *VetorInvetido);
 //SELECT SORT
 void selectionSort(int arr[], int n, int *VetorInvetido);
 
-int criaVetor(int tamanho);
+int* criaVetor(int tamanho);
 
 void inverteVetor(int *array, int tamanho);
 
