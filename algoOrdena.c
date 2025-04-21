@@ -407,7 +407,7 @@ void menuprincipal()
 
     case 12:
         printf("Saindo do programa...\n");
-        exit(0);
+        return;
         break;
 
     default:
