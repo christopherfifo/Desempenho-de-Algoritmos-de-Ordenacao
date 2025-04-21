@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1745194062 source:c:\users\didiv\downloads\desempenho-de-algoritmos-de-ordenacao\algoordena.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"algoOrdena.h"
+	"algoritmosOrdenacao.h"
+
+1745007008 c:\users\didiv\downloads\desempenho-de-algoritmos-de-ordenacao\algoordena.h
+
+1745198842 c:\users\didiv\downloads\desempenho-de-algoritmos-de-ordenacao\algoritmosordenacao.h
+
+1745199400 source:c:\users\didiv\downloads\desempenho-de-algoritmos-de-ordenacao\algoritmosordenacao.c
+	<stdio.h>
+	<stdlib.h>
+	"algoritmosOrdenacao.h"
+
+1745199441 source:c:\users\didiv\downloads\desempenho-de-algoritmos-de-ordenacao\main.c
+	<stdio.h>
+	<stdlib.h>
+	"algoOrdena.h"
+	"algoritmosOrdenacao.h"
+

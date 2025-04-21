@@ -1,29 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <sys/time.h>
 #include "algoritmosOrdenacao.h"
-#include "algoOrdena.h"
 
-int elementoDaestrutura = 0;
 
-struct timeval{
-    long int tv_sec; 
-    long int tv_usec; 
-};   
-struct Algoritimo{
-    char nome[40];
-    int tamanho;
-    float tempoTotal;
-    float melhorCaso;
-    float piorCaso;
-};
-
-struct Algoritimo Algoritimos[10]; 
-
+//////// COUNTING SORT
 void countingSort(int inputArray[], int numElementos) {
-    // 1� Passo:
-    // Encontrar o maior n�mero no array
+    // 1º Passo:
+    // Encontrar o maior número no array
     int maiorNumero = 0;
     for (int i = 0; i < numElementos; i++){
         if (inputArray[i] > maiorNumero){
@@ -31,21 +14,21 @@ void countingSort(int inputArray[], int numElementos) {
         }
     }
 
-    // 2� Passo:
+    // 2º Passo:
     // Inicializar um array auxiliar, sendo que
-    // o tamanho dele ser� igual ao MAIOR N�MERO
+    // o tamanho dele será igual ao MAIOR NÚMERO
     // encontrado no array de input
     int* auxArray = (int*)calloc(maiorNumero + 1, sizeof(int));
 
-    // 3� Passo:
-    // Utilizaremos os �ndices do array auxiliar
-    // para contabilizar a quantidade de apari��es
-    // de cada n�mero no nosso array de input
+    // 3º Passo:
+    // Utilizaremos os índices do array auxiliar
+    // para contabilizar a quantidade de aparições
+    // de cada número no nosso array de input
     for (int i = 0; i < numElementos; i++){
         auxArray[inputArray[i]]++;
     }
 
-    // 4� Passo:
+    // 4º Passo:
     // Para cada index do array auxiliar
     // Calcularemos a soma acumulativa dos index anteriores
     // Ex: {0, 1, 4, 2, 0, 0, 1} -> {0, 1, 5, 7, 7, 7, 8}
@@ -53,32 +36,32 @@ void countingSort(int inputArray[], int numElementos) {
         auxArray[i] += auxArray[i - 1];
     }
 
-    // 5� Passo:
-    // Criamos o array de output, onde conter� os n�meros ordenados
-    // Percorremos o array de input de tr�s para frente, garantindo
+    // 5º Passo:
+    // Criamos o array de output, onde conterá os números ordenados
+    // Percorremos o array de input de trás para frente, garantindo
     // que elementos iguais mantenham a ordem original (estabilidade).
-    // Cada n�mero � colocado na posi��o correta no array ordenado
-    // e decrementamos o array auxiliar para os n�meros que j� foram processados
+    // Cada número é colocado na posição correta no array ordenado
+    // e decrementamos o array auxiliar para os números que já foram processados
     int* arrayOrdenado = (int*)malloc(numElementos * sizeof(int));
     for (int i = numElementos - 1; i >= 0; i--){
         arrayOrdenado[auxArray[inputArray[i]] - 1] = inputArray[i];
         auxArray[inputArray[i]]--;
     }
 
-    // 6� Passo:
+    // 6º Passo:
     // Copiaremos os elementos do array ordenado para o array de input
-    // Apenas faremos isso pois essa fun��o n�o retorna um novo array,
-    // E sim ordena no pr�prio array que foi passado.
+    // Apenas faremos isso pois essa função não retorna um novo array,
+    // E sim ordena no próprio array que foi passado.
     for (int i = 0; i < numElementos; i++){
         inputArray[i] = arrayOrdenado[i];
     }
 
-    // Liberando a mem�ria alocada
+    // Liberando a memória alocada
     free(auxArray);
     free(arrayOrdenado);
 }
 
-
+//////// MERGE SORT
 void mergesort(int *v, int inicio, int fim){
     int meio;
     if(inicio < fim){
@@ -129,16 +112,16 @@ void merge(int *v, int inicio, int meio, int fim){
     free(temp);//liberar o vetor temporario
 }
 
-
+//////// HEAP SORT
 void swap(int *a, int *b) {
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-// Fun��o para criar um Max-Heap
+// Função para criar um Max-Heap
 void maxHeapify(int arr[], int n, int i) {
-    int largest = i; // Inicializa o maior como o n�
+    int largest = i; // Inicializa o maior como o nó
     int left = 2 * i + 1;
     int right = 2 * i + 2;
 
@@ -154,7 +137,7 @@ void maxHeapify(int arr[], int n, int i) {
     }
 }
 
-// Fun��o HeapSort usando Max-Heap (ordem crescente)
+// Função HeapSort usando Max-Heap (ordem crescente)
 void heapSortAscending(int arr[], int n) {
     for (int i = n / 2 - 1; i >= 0; i--)
         maxHeapify(arr, n, i);
@@ -165,6 +148,7 @@ void heapSortAscending(int arr[], int n) {
     }
 }
 
+//////// SHELL SORT
 void ShellSort(int arr[], int tam) {
     int intervalo, aux, i, j;
     for (intervalo = tam / 2; intervalo > 0; intervalo /= 2) {
@@ -178,41 +162,224 @@ void ShellSort(int arr[], int tam) {
     }
 }
 
+//////// TIM SORT
 
-void salvaResultados(char nome[], int tamanho, double tempoTotal, double melhorCaso, double piorCaso){
-    if (elementoDaestrutura >= 10) {
-        printf("Limite de algoritmos atingido.\n");
-        return -1;
-    }
-
-    strcpy(Algoritimos[elementoDaestrutura].nome, nome); 
-    Algoritimos[elementoDaestrutura].tamanho = tamanho;
-    Algoritimos[elementoDaestrutura].tempoTotal = tempoTotal;
-    Algoritimos[elementoDaestrutura].melhorCaso = melhorCaso;
-    Algoritimos[elementoDaestrutura].piorCaso = piorCaso;
-
-    elementoDaestrutura++;
-};
-
-void exibeTodosOsAlgoritmos(){
-    printf("Algoritmos Salvos:\n");
-    for (int i = 0; i < 10; i++){
-        printf("---------------ALGORITIMOS--------------------\n");
-        exibirAlgoritmo(Algoritimos[i].nome, Algoritimos[i].tamanho, Algoritimos[i].tempoTotal, Algoritimos[i].melhorCaso, Algoritimos[i].piorCaso);
-    }
-};
-
-double mediaTempo(int *v, int tamanho){
-
-    double totalTempo = 0.0;
-
-    for(int i = 0; i < tamanho; i++){
-       totalTempo += v[i];
-    }
-    
-    totalTempo = totalTempo / tamanho;
-
-    return totalTempo;
+int min(int a, int b) {
+    return (a < b) ? a : b;
 }
 
+// Insertion Sort
+void insertSort(int array[], int esq, int dir) {
+    for (int i = esq + 1; i <= dir; i++) {
+        int chave = array[i];
+        int j = i - 1;
+        while (j >= esq && array[j] > chave) {
+            array[j + 1] = array[j];
+            j--;
+        }
+        array[j + 1] = chave;
+    }
+}
+void timSort(int array[], int n) {
+    int runSize = 1;
+    while (runSize * runSize < n) {
+        runSize++;
+    }
+
+    // Ordena pequenas partes com insertion sort
+    for (int i = 0; i < n; i += runSize) {
+        insertSort(array, i, min((i + runSize - 1), (n - 1)));
+    }
+
+    // Mescla as partes ordenadas usando mergesort
+    for (int tam = runSize; tam < n; tam = 2 * tam) {
+        for (int esq = 0; esq < n; esq += 2 * tam) {
+            int meio = esq + tam - 1;
+            int dir = min((esq + 2 * tam - 1), (n - 1));
+            if (meio < dir) {
+                mergesort(array, esq, dir);
+            }
+        }
+    }
+}
+
+//////// BUCKET SORT
+
+typedef struct {
+    int *valor;
+    int tamanho;
+    int capacidade;
+} Balde;
+
+void bucketSort(int *vetor, int tamanho) {
+    if (tamanho <= 0) return;
+
+    int max = vetor[0];
+    for (int i = 1; i < tamanho; i++) {
+        if (vetor[i] > max) {
+            max = vetor[i];
+        }
+    }
+
+    // Define número de baldes com base no tamanho da entrada
+    int numBuckets = tamanho;
+
+    // Criação e inicialização dos baldes
+    Balde *baldes = (Balde *) malloc(numBuckets * sizeof(Balde));
+    for (int i = 0; i < numBuckets; i++) {
+        baldes[i].tamanho = 0;
+        baldes[i].capacidade = 5;
+        baldes[i].valor = (int *) malloc(baldes[i].capacidade * sizeof(int));
+    }
+
+    // Distribui os elementos nos baldes
+    for (int i = 0; i < tamanho; i++) {
+        int indice = (vetor[i] * numBuckets) / (max + 1);
+        if (baldes[indice].tamanho == baldes[indice].capacidade) {
+            baldes[indice].capacidade *= 2;
+            baldes[indice].valor = (int *) realloc(baldes[indice].valor, baldes[indice].capacidade * sizeof(int));
+        }
+        baldes[indice].valor[baldes[indice].tamanho++] = vetor[i];
+    }
+
+    // Ordena os baldes e reconstrói o vetor
+    int k = 0;
+    for (int i = 0; i < numBuckets; i++) {
+        if (baldes[i].tamanho > 0) {
+            insertSort(baldes[i].valor, 0, baldes[i].tamanho - 1);
+            for (int j = 0; j < baldes[i].tamanho; j++) {
+                vetor[k++] = baldes[i].valor[j];
+            }
+        }
+        free(baldes[i].valor);
+    }
+
+    free(baldes);
+}
+
+//////// RADIX SORT
+
+// Uma fun��o para realizar o ordenamento por contagem
+// de arr[] de acordo com o d�gito representado por exp
+void countingSortBase10(int inputArray[], int numElementos, int exp) {
+    int* auxArray = (int*)calloc(10, sizeof(int));  // base 10
+    int* arrayOrdenado = (int*)malloc(numElementos * sizeof(int));
+
+    if (auxArray == NULL || arrayOrdenado == NULL) {
+        printf("Erro ao alocar memória\n");
+        return;
+    }
+
+    // Conta as ocorrências dos dígitos (de 0 a 9)
+    for (int i = 0; i < numElementos; i++) {
+        int digito = (inputArray[i] / exp) % 10;
+        auxArray[digito]++;
+    }
+
+    // Soma acumulada
+    for (int i = 1; i < 10; i++) {
+        auxArray[i] += auxArray[i - 1];
+    }
+
+    // Ordena com base no dígito
+    for (int i = numElementos - 1; i >= 0; i--) {
+        int digito = (inputArray[i] / exp) % 10;
+        arrayOrdenado[auxArray[digito] - 1] = inputArray[i];
+        auxArray[digito]--;
+    }
+
+    // Copia para o vetor original
+    for (int i = 0; i < numElementos; i++) {
+        inputArray[i] = arrayOrdenado[i];
+    }
+
+    free(auxArray);
+    free(arrayOrdenado);
+}
+
+// A fun��o principal para ordenar arr[] de tamanho n
+// usando o Radix Sort
+unsigned int getMax(int *arr, int n) {
+    unsigned int mx = arr[0];
+    for (int i = 1; i < n; i++)
+        if (arr[i] > mx)
+            mx = arr[i];
+    return mx;
+}
+
+void radixSort(int *arr, int n) {
+    int max = getMax(arr, n);
+    for (int exp = 1; max / exp > 0; exp *= 10) {
+        countingSortBase10(arr, n, exp);
+    }
+}
+
+//////// QUICK SORT
+void troca(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+// Fun��o de parti��o
+int divisao(int arr[], int low, int high) {
+    int pivot = arr[high];  // Escolhe o �ltimo elemento como piv�
+    int i = (low - 1); // �ndice do menor elemento
+
+    for (int j = low; j < high; j++) {
+        if (arr[j] < pivot) { // Se o elemento for menor que o piv�
+            i++; // Move o �ndice do menor elemento
+            troca(&arr[i], &arr[j]); // Troca os elementos
+        }
+    }
+    troca(&arr[i + 1], &arr[high]); // Coloca o piv� na posi��o correta
+    return (i + 1); // Retorna o �ndice do piv�
+}
+
+// Implementa��o recursiva do QuickSort
+void quickSort(int arr[], int low, int high) {
+    if (low < high) {
+        int pi = divisao(arr, low, high); // Encontra o �ndice do piv�
+
+        // Chama o QuickSort recursivamente para as duas metades
+        quickSort(arr, low, pi - 1);
+        quickSort(arr, pi + 1, high);
+    }
+}
+
+//////// BUBBLE SORT
+
+
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        // Últimos i elementos já estão no lugar
+        for (int j = 0; j < n - i - 1; j++) {
+            // Troca se o elemento atual é maior que o próximo
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}
+
+
+//////// SELECT SORT
+
+void selectionSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[minIndex]) {
+                minIndex = j;
+            }
+        }
+        if (minIndex != i) {
+            int temp = arr[i];
+            arr[i] = arr[minIndex];
+            arr[minIndex] = temp;
+        }
+    }
+}
 
