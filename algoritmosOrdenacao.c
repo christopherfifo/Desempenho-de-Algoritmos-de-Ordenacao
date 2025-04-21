@@ -9,6 +9,9 @@ Algoritmo Algoritmos[11];
 //////// COUNTING SORT
 void countingSort(int inputArray[], int numElementos, int *VetorInvetido)
 {
+
+//commit aqui tem que por a função de tempo
+
     // 1º Passo:
     // Encontrar o maior número no array
     int maiorNumero = 0;
@@ -66,9 +69,24 @@ void countingSort(int inputArray[], int numElementos, int *VetorInvetido)
         inputArray[i] = arrayOrdenado[i];
     }
 
+if(VetorInvetido != NULL)
+    {
+        countingSort(inputArray, numElementos, NULL);
+        inverteVetor(inputArray, numElementos);
+        countingSort(inputArray, numElementos, NULL);
+        free(auxArray);
+        free(arrayOrdenado);
+        return;
+    }
+
+
+    salvaResultados("CountingSort", numElementos, 0, 0, 0, 0);
+    exibirAlgoritmo("CountingSort", numElementos, 0, 0, 0, 0);
+
     // Liberando a memória alocada
     free(auxArray);
     free(arrayOrdenado);
+
 }
 
 //////// MERGE SORT
@@ -82,6 +100,17 @@ void mergesort(int *v, int inicio, int fim, int *VetorInvetido)
         mergesort(v, meio + 1, fim, VetorInvetido);
         merge(v, inicio, meio, fim, VetorInvetido);
     }
+
+    if (VetorInvetido != NULL)
+    {
+        mergesort(v, inicio, fim, NULL);
+        inverteVetor(v, fim - inicio + 1);
+        mergesort(v, inicio, fim, NULL);
+        return;
+    }
+        salvaResultados("MergeSort", fim - inicio + 1, 0, 0, 0, 0);
+        exibirAlgoritmo("MergeSort", fim - inicio + 1, 0, 0, 0, 0);
+  
 }
 
 void merge(int *v, int inicio, int meio, int fim, int *VetorInvetido)
@@ -181,6 +210,16 @@ void heapSortAscending(int arr[], int n, int *VetorInvetido)
         swap(&arr[0], &arr[i]);
         maxHeapify(arr, i, 0);
     }
+
+    if (VetorInvetido != NULL)
+    {
+        heapSortAscending(arr, n, NULL);
+        inverteVetor(arr, n);
+        heapSortAscending(arr, n, NULL);
+        return;
+    }
+    salvaResultados("HeapSort", n, 0, 0, 0, 0);
+    exibirAlgoritmo("HeapSort", n, 0, 0, 0, 0);
 }
 
 //////// SHELL SORT
@@ -199,6 +238,16 @@ void ShellSort(int arr[], int tam, int *VetorInvetido)
             arr[j] = aux;
         }
     }
+
+    if (VetorInvetido != NULL)
+    {
+        ShellSort(arr, tam, NULL);
+        inverteVetor(arr, tam);
+        ShellSort(arr, tam, NULL);
+        return;
+    }
+    salvaResultados("ShellSort", tam, 0, 0, 0, 0);
+    exibirAlgoritmo("ShellSort", tam, 0, 0, 0, 0);
 }
 
 //////// TIM SORT
@@ -223,6 +272,7 @@ void insertSort(int array[], int esq, int dir, int *VetorInvetido)
         array[j + 1] = chave;
     }
 }
+
 void timSort(int array[], int n, int *VetorInvetido)
 {
     int runSize = 1;
@@ -250,6 +300,16 @@ void timSort(int array[], int n, int *VetorInvetido)
             }
         }
     }
+
+    if (VetorInvetido != NULL)
+    {
+        timSort(array, n, NULL);
+        inverteVetor(array, n);
+        timSort(array, n, NULL);
+        return;
+    }
+    salvaResultados("TimSort", n, 0, 0, 0, 0);
+    exibirAlgoritmo("TimSort", n, 0, 0, 0, 0);
 }
 
 //////// BUCKET SORT

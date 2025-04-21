@@ -38,6 +38,7 @@ void menuprincipal()
     {
         menuquantidade(slcQuantidade);
 
+        double tempos[10];
         for (int i = 0; i < 10; i++)
         {
             int *vetor = criaVetor(slcQuantidade);
@@ -47,7 +48,7 @@ void menuprincipal()
                 return;
             }
 
-            bubbleSort(vetor, slcQuantidade, &vetorInvertido);
+            TIME_IT(bubbleSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
 
             liberarVetor(vetor);
         }
@@ -60,18 +61,45 @@ void menuprincipal()
         }
 
         bubbleSort(vetor, slcQuantidade, &vetorInvertido);
-
         liberarVetor(vetor);
+
+        double media = mediaTempo(tempos, 10);
+        double melhor = tempos[0], pior = tempos[0];
+        double tempoTotal = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            tempoTotal += tempos[i];
+            if (tempos[i] < melhor) melhor = tempos[i];
+            if (tempos[i] > pior) pior = tempos[i];
+        }
+
+        salvaResultados("BubbleSort", slcQuantidade, tempoTotal, media, melhor, pior);
+        exibirAlgoritmo("BubbleSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
 
-    // Insertion Sort
-    case 2:
-    {
-        menuquantidade(slcQuantidade);
 
-        for (int i = 0; i < 10; i++)
+
+    // Insertion Sort
+        case 2:
         {
+            menuquantidade(slcQuantidade);
+
+            double tempos[10];
+            for (int i = 0; i < 10; i++)
+            {
+                int *vetor = criaVetor(slcQuantidade);
+                if (vetor == NULL)
+                {
+                    printf("Erro ao alocar memória\n");
+                    return;
+                }
+
+                TIME_IT(insertionSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
+
+                liberarVetor(vetor);
+            }
+
             int *vetor = criaVetor(slcQuantidade);
             if (vetor == NULL)
             {
@@ -79,29 +107,31 @@ void menuprincipal()
                 return;
             }
 
-            insertSort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
-
+            insertionSort(vetor, slcQuantidade, &vetorInvertido);
             liberarVetor(vetor);
+
+            double media = mediaTempo(tempos, 10);
+            double melhor = tempos[0], pior = tempos[0];
+            double tempoTotal = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                tempoTotal += tempos[i];
+                if (tempos[i] < melhor) melhor = tempos[i];
+                if (tempos[i] > pior) pior = tempos[i];
+            }
+
+            salvaResultados("InsertionSort", slcQuantidade, tempoTotal, media, melhor, pior);
+            exibirAlgoritmo("InsertionSort", slcQuantidade, tempoTotal, media, melhor, pior);
         }
+        break;
 
-        int *vetor = criaVetor(slcQuantidade);
-        if (vetor == NULL)
-        {
-            printf("Erro ao alocar memória\n");
-            return;
-        }
-
-        insertSort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
-
-        liberarVetor(vetor);
-    }
-    break;
 
     // Selection Sort
     case 3:
     {
         menuquantidade(slcQuantidade);
 
+        double tempos[10];
         for (int i = 0; i < 10; i++)
         {
             int *vetor = criaVetor(slcQuantidade);
@@ -111,7 +141,7 @@ void menuprincipal()
                 return;
             }
 
-            selectionSort(vetor, slcQuantidade, &vetorInvertido);
+            TIME_IT(selectionSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
 
             liberarVetor(vetor);
         }
@@ -124,16 +154,31 @@ void menuprincipal()
         }
 
         selectionSort(vetor, slcQuantidade, &vetorInvertido);
-
         liberarVetor(vetor);
+
+        double media = mediaTempo(tempos, 10);
+        double melhor = tempos[0], pior = tempos[0];
+        double tempoTotal = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            tempoTotal += tempos[i];
+            if (tempos[i] < melhor) melhor = tempos[i];
+            if (tempos[i] > pior) pior = tempos[i];
+        }
+
+        salvaResultados("SelectionSort", slcQuantidade, tempoTotal, media, melhor, pior);
+        exibirAlgoritmo("SelectionSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
+
+
 
     // Shell Sort
     case 4:
     {
         menuquantidade(slcQuantidade);
 
+        double tempos[10];
         for (int i = 0; i < 10; i++)
         {
             int *vetor = criaVetor(slcQuantidade);
@@ -143,7 +188,7 @@ void menuprincipal()
                 return;
             }
 
-            ShellSort(vetor, slcQuantidade, &vetorInvertido);
+            TIME_IT(ShellSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
 
             liberarVetor(vetor);
         }
@@ -156,16 +201,30 @@ void menuprincipal()
         }
 
         ShellSort(vetor, slcQuantidade, &vetorInvertido);
-
         liberarVetor(vetor);
+
+        double media = mediaTempo(tempos, 10);
+        double melhor = tempos[0], pior = tempos[0];
+        double tempoTotal = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            tempoTotal += tempos[i];
+            if (tempos[i] < melhor) melhor = tempos[i];
+            if (tempos[i] > pior) pior = tempos[i];
+        }
+
+        salvaResultados("ShellSort", slcQuantidade, tempoTotal, media, melhor, pior);
+        exibirAlgoritmo("ShellSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
+
 
     // Merge Sort
     case 5:
     {
         menuquantidade(slcQuantidade);
 
+        double tempos[10];
         for (int i = 0; i < 10; i++)
         {
             int *vetor = criaVetor(slcQuantidade);
@@ -175,7 +234,7 @@ void menuprincipal()
                 return;
             }
 
-            mergesort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
+            TIME_IT(mergesort(vetor, 0, slcQuantidade - 1, &vetorInvertido), tempos[i]);
 
             liberarVetor(vetor);
         }
@@ -188,16 +247,30 @@ void menuprincipal()
         }
 
         mergesort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
-
         liberarVetor(vetor);
+
+        double media = mediaTempo(tempos, 10);
+        double melhor = tempos[0], pior = tempos[0];
+        double tempoTotal = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            tempoTotal += tempos[i];
+            if (tempos[i] < melhor) melhor = tempos[i];
+            if (tempos[i] > pior) pior = tempos[i];
+        }
+
+        salvaResultados("MergeSort", slcQuantidade, tempoTotal, media, melhor, pior);
+        exibirAlgoritmo("MergeSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
+
 
     // Quick Sort
     case 6:
     {
         menuquantidade(slcQuantidade);
 
+        double tempos[10];
         for (int i = 0; i < 10; i++)
         {
             int *vetor = criaVetor(slcQuantidade);
@@ -207,7 +280,7 @@ void menuprincipal()
                 return;
             }
 
-            quickSort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
+            TIME_IT(quickSort(vetor, 0, slcQuantidade - 1, &vetorInvertido), tempos[i]);
 
             liberarVetor(vetor);
         }
@@ -220,8 +293,20 @@ void menuprincipal()
         }
 
         quickSort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
-
         liberarVetor(vetor);
+
+        double media = mediaTempo(tempos, 10);
+        double melhor = tempos[0], pior = tempos[0];
+        double tempoTotal = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            tempoTotal += tempos[i];
+            if (tempos[i] < melhor) melhor = tempos[i];
+            if (tempos[i] > pior) pior = tempos[i];
+        }
+
+        salvaResultados("QuickSort", slcQuantidade, tempoTotal, media, melhor, pior);
+        exibirAlgoritmo("QuickSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
 
@@ -230,6 +315,7 @@ void menuprincipal()
     {
         menuquantidade(slcQuantidade);
 
+        double tempos[10];
         for (int i = 0; i < 10; i++)
         {
             int *vetor = criaVetor(slcQuantidade);
@@ -239,7 +325,7 @@ void menuprincipal()
                 return;
             }
 
-            heapSortAscending(vetor, slcQuantidade, &vetorInvertido);
+            TIME_IT(heapSortAscending(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
 
             liberarVetor(vetor);
         }
@@ -252,16 +338,30 @@ void menuprincipal()
         }
 
         heapSortAscending(vetor, slcQuantidade, &vetorInvertido);
-
         liberarVetor(vetor);
+
+        double media = mediaTempo(tempos, 10);
+        double melhor = tempos[0], pior = tempos[0];
+        double tempoTotal = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            tempoTotal += tempos[i];
+            if (tempos[i] < melhor) melhor = tempos[i];
+            if (tempos[i] > pior) pior = tempos[i];
+        }
+
+        salvaResultados("HeapSort", slcQuantidade, tempoTotal, media, melhor, pior);
+        exibirAlgoritmo("HeapSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
+
 
     // Bucket Sort
     case 8:
     {
         menuquantidade(slcQuantidade);
 
+        double tempos[10];
         for (int i = 0; i < 10; i++)
         {
             int *vetor = criaVetor(slcQuantidade);
@@ -271,7 +371,7 @@ void menuprincipal()
                 return;
             }
 
-            bucketSort(vetor, slcQuantidade, &vetorInvertido);
+            TIME_IT(bucketSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
 
             liberarVetor(vetor);
         }
@@ -284,16 +384,30 @@ void menuprincipal()
         }
 
         bucketSort(vetor, slcQuantidade, &vetorInvertido);
-
         liberarVetor(vetor);
+
+        double media = mediaTempo(tempos, 10);
+        double melhor = tempos[0], pior = tempos[0];
+        double tempoTotal = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            tempoTotal += tempos[i];
+            if (tempos[i] < melhor) melhor = tempos[i];
+            if (tempos[i] > pior) pior = tempos[i];
+        }
+
+        salvaResultados("BucketSort", slcQuantidade, tempoTotal, media, melhor, pior);
+        exibirAlgoritmo("BucketSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
 
+
     // Radix Sort
-    case 9:
+     case 9:
     {
         menuquantidade(slcQuantidade);
 
+        double tempos[10];
         for (int i = 0; i < 10; i++)
         {
             int *vetor = criaVetor(slcQuantidade);
@@ -303,7 +417,7 @@ void menuprincipal()
                 return;
             }
 
-            radixSort(vetor, slcQuantidade, &vetorInvertido);
+            TIME_IT(radixSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
 
             liberarVetor(vetor);
         }
@@ -316,10 +430,23 @@ void menuprincipal()
         }
 
         radixSort(vetor, slcQuantidade, &vetorInvertido);
-
         liberarVetor(vetor);
+
+        double media = mediaTempo(tempos, 10);
+        double melhor = tempos[0], pior = tempos[0];
+        double tempoTotal = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            tempoTotal += tempos[i];
+            if (tempos[i] < melhor) melhor = tempos[i];
+            if (tempos[i] > pior) pior = tempos[i];
+        }
+
+        salvaResultados("RadixSort", slcQuantidade, tempoTotal, media, melhor, pior);
+        exibirAlgoritmo("RadixSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
+
 
     // Counting Sort
     case 10:
@@ -378,6 +505,7 @@ void menuprincipal()
     {
         menuquantidade(slcQuantidade);
 
+        double tempos[10];
         for (int i = 0; i < 10; i++)
         {
             int *vetor = criaVetor(slcQuantidade);
@@ -387,7 +515,7 @@ void menuprincipal()
                 return;
             }
 
-            timSort(vetor, slcQuantidade, &vetorInvertido);
+            TIME_IT(timSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
 
             liberarVetor(vetor);
         }
@@ -400,14 +528,27 @@ void menuprincipal()
         }
 
         timSort(vetor, slcQuantidade, &vetorInvertido);
-
         liberarVetor(vetor);
+
+        double media = mediaTempo(tempos, 10);
+        double melhor = tempos[0], pior = tempos[0];
+        double tempoTotal = 0;
+        for (int i = 0; i < 10; i++)
+        {
+            tempoTotal += tempos[i];
+            if (tempos[i] < melhor) melhor = tempos[i];
+            if (tempos[i] > pior) pior = tempos[i];
+        }
+
+        salvaResultados("TimSort", slcQuantidade, tempoTotal, media, melhor, pior);
+        exibirAlgoritmo("TimSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
 
+
     case 12:
         printf("Saindo do programa...\n");
-        return;
+        exit(0);
         break;
 
     default:
