@@ -4,9 +4,10 @@
 #include "algoOrdena.h"
 #include "algoritmosOrdenacao.h"
 
-void menuprincipal(){
     int slcAlgoritmo;
     int slcQuantidade;
+
+void menuprincipal(){
     
     printf("///////////////////\n");
     printf("MENU PRINCIPAL\n");
@@ -258,7 +259,7 @@ void menuprincipal(){
                 imprimirVetor(vetor, slcQuantidade);
                 printf("\n\n");
         
-                heapSort(vetor, slcQuantidade, NULL);
+                heapSortAscending(vetor, slcQuantidade, NULL);
                 printf("Heap Sort: ");
                 imprimirVetor(vetor, slcQuantidade);
                 liberarVetor(vetor);
@@ -272,7 +273,7 @@ void menuprincipal(){
     
             printf("\nVetor ordenado:\n");
             imprimirVetor(vetor, slcQuantidade);
-            heapSort(vetor, slcQuantidade, 2);
+            heapSortAscending(vetor, slcQuantidade, 2);
             
             printf("Vetor invertido:\n");
             imprimirVetor(vetor, slcQuantidade);
@@ -439,7 +440,7 @@ void menuprincipal(){
 
 
 
-void menuquantidade(int slcQuantidade){
+void menuquantidade(){
     printf("//////////////////\n");
     printf("ESCOLHA A QUANTIDADE DE ELEMENTOS\n");
     printf("//////////////////\n");

@@ -59,4 +59,6 @@ int salvaResultados( char nome[], int tamanho, double tempoTotal, double melhorC
 
 void imprimirVetor(int vetor[], int tamanho);
 
+void exibirAlgoritmo(char nome[], int tamanho, double tempoTotal, double melhorCaso, double piorCaso);
+
 #endif // ALGORITMOSORDENACAO_H_INCLUDED
