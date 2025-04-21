@@ -33,7 +33,7 @@ void menuprincipal(){
             menuquantidade(slcQuantidade);
     
             for (int i = 0; i < 10; i++) {
-                char *vetor = criaVetor(slcQuantidade);
+                int *vetor = criaVetor(slcQuantidade);
                 if (vetor == NULL) {
                     printf("Erro ao alocar memória\n");
                     return;
@@ -48,7 +48,7 @@ void menuprincipal(){
                 liberarVetor(vetor);
             }
             
-            char *vetor = criaVetor(slcQuantidade);
+            int *vetor = criaVetor(slcQuantidade);
             if (vetor == NULL) {
                 printf("Erro ao alocar memória\n");
                 return;
@@ -69,7 +69,7 @@ void menuprincipal(){
             menuquantidade(slcQuantidade);
     
             for (int i = 0; i < 10; i++) {
-                char *vetor = criaVetor(slcQuantidade);
+                int *vetor = criaVetor(slcQuantidade);
                 if (vetor == NULL) {
                     printf("Erro ao alocar memória\n");
                     return;
@@ -84,7 +84,7 @@ void menuprincipal(){
                 liberarVetor(vetor);
             }
             
-            char *vetor = criaVetor(slcQuantidade);
+            int *vetor = criaVetor(slcQuantidade);
             if (vetor == NULL) {
                 printf("Erro ao alocar memória\n");
                 return;
@@ -105,7 +105,7 @@ void menuprincipal(){
             menuquantidade(slcQuantidade);
     
             for (int i = 0; i < 10; i++) {
-                char *vetor = criaVetor(slcQuantidade);
+                int *vetor = criaVetor(slcQuantidade);
                 if (vetor == NULL) {
                     printf("Erro ao alocar memória\n");
                     return;
@@ -120,7 +120,7 @@ void menuprincipal(){
                 liberarVetor(vetor);
             }
             
-            char *vetor = criaVetor(slcQuantidade);
+            int *vetor = criaVetor(slcQuantidade);
             if (vetor == NULL) {
                 printf("Erro ao alocar memória\n");
                 return;
@@ -141,7 +141,7 @@ void menuprincipal(){
             menuquantidade(slcQuantidade);
     
             for (int i = 0; i < 10; i++) {
-                char *vetor = criaVetor(slcQuantidade);
+                int *vetor = criaVetor(slcQuantidade);
                 if (vetor == NULL) {
                     printf("Erro ao alocar memória\n");
                     return;
@@ -156,7 +156,7 @@ void menuprincipal(){
                 liberarVetor(vetor);
             }
             
-            char *vetor = criaVetor(slcQuantidade);
+            int *vetor = criaVetor(slcQuantidade);
             if (vetor == NULL) {
                 printf("Erro ao alocar memória\n");
                 return;
@@ -177,7 +177,7 @@ void menuprincipal(){
             menuquantidade(slcQuantidade);
     
             for (int i = 0; i < 10; i++) {
-                char *vetor = criaVetor(slcQuantidade);
+                int *vetor = criaVetor(slcQuantidade);
                 if (vetor == NULL) {
                     printf("Erro ao alocar memória\n");
                     return;
@@ -192,7 +192,7 @@ void menuprincipal(){
                 liberarVetor(vetor);
             }
             
-            char *vetor = criaVetor(slcQuantidade);
+            int *vetor = criaVetor(slcQuantidade);
             if (vetor == NULL) {
                 printf("Erro ao alocar memória\n");
                 return;
@@ -213,7 +213,7 @@ void menuprincipal(){
             menuquantidade(slcQuantidade);
     
             for (int i = 0; i < 10; i++) {
-                char *vetor = criaVetor(slcQuantidade);
+                int *vetor = criaVetor(slcQuantidade);
                 if (vetor == NULL) {
                     printf("Erro ao alocar memória\n");
                     return;
@@ -228,7 +228,7 @@ void menuprincipal(){
                 liberarVetor(vetor);
             }
             
-            char *vetor = criaVetor(slcQuantidade);
+            int *vetor = criaVetor(slcQuantidade);
             if (vetor == NULL) {
                 printf("Erro ao alocar memória\n");
                 return;
@@ -249,7 +249,7 @@ void menuprincipal(){
             menuquantidade(slcQuantidade);
     
             for (int i = 0; i < 10; i++) {
-                char *vetor = criaVetor(slcQuantidade);
+                int *vetor = criaVetor(slcQuantidade);
                 if (vetor == NULL) {
                     printf("Erro ao alocar memória\n");
                     return;
@@ -264,7 +264,7 @@ void menuprincipal(){
                 liberarVetor(vetor);
             }
             
-            char *vetor = criaVetor(slcQuantidade);
+            int *vetor = criaVetor(slcQuantidade);
             if (vetor == NULL) {
                 printf("Erro ao alocar memória\n");
                 return;
@@ -285,7 +285,7 @@ void menuprincipal(){
             menuquantidade(slcQuantidade);
     
             for (int i = 0; i < 10; i++) {
-                char *vetor = criaVetor(slcQuantidade);
+                int *vetor = criaVetor(slcQuantidade);
                 if (vetor == NULL) {
                     printf("Erro ao alocar memória\n");
                     return;
@@ -300,7 +300,7 @@ void menuprincipal(){
                 liberarVetor(vetor);
             }
             
-            char *vetor = criaVetor(slcQuantidade);
+            int *vetor = criaVetor(slcQuantidade);
             if (vetor == NULL) {
                 printf("Erro ao alocar memória\n");
                 return;
@@ -321,7 +321,7 @@ void menuprincipal(){
             menuquantidade(slcQuantidade);
     
             for (int i = 0; i < 10; i++) {
-                char *vetor = criaVetor(slcQuantidade);
+                int *vetor = criaVetor(slcQuantidade);
                 if (vetor == NULL) {
                     printf("Erro ao alocar memória\n");
                     return;
@@ -336,7 +336,7 @@ void menuprincipal(){
                 liberarVetor(vetor);
             }
             
-            char *vetor = criaVetor(slcQuantidade);
+            int *vetor = criaVetor(slcQuantidade);
             if (vetor == NULL) {
                 printf("Erro ao alocar memória\n");
                 return;
@@ -357,7 +357,7 @@ void menuprincipal(){
             menuquantidade(slcQuantidade);
     
             for (int i = 0; i < 10; i++) {
-                char *vetor = criaVetor(slcQuantidade);
+                int *vetor = criaVetor(slcQuantidade);
                 if (vetor == NULL) {
                     printf("Erro ao alocar memória\n");
                     return;
@@ -372,7 +372,7 @@ void menuprincipal(){
                 liberarVetor(vetor);
             }
             
-            char *vetor = criaVetor(slcQuantidade);
+            int *vetor = criaVetor(slcQuantidade);
             if (vetor == NULL) {
                 printf("Erro ao alocar memória\n");
                 return;
@@ -393,7 +393,7 @@ void menuprincipal(){
             menuquantidade(slcQuantidade);
     
             for (int i = 0; i < 10; i++) {
-                char *vetor = criaVetor(slcQuantidade);
+                int *vetor = criaVetor(slcQuantidade);
                 if (vetor == NULL) {
                     printf("Erro ao alocar memória\n");
                     return;
@@ -408,7 +408,7 @@ void menuprincipal(){
                 liberarVetor(vetor);
             }
             
-            char *vetor = criaVetor(slcQuantidade);
+            int *vetor = criaVetor(slcQuantidade);
             if (vetor == NULL) {
                 printf("Erro ao alocar memória\n");
                 return;
