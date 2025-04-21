@@ -21,3 +21,20 @@
 	"algoOrdena.h"
 	"algoritmosOrdenacao.h"
 
+1745257769 source:c:\users\user\desktop\programing\desempenho-de-algoritmos-de-ordenacao\algoordena.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"algoOrdena.h"
+	"algoritmosOrdenacao.h"
+
+1745250859 c:\users\user\desktop\programing\desempenho-de-algoritmos-de-ordenacao\algoordena.h
+
+1745258757 c:\users\user\desktop\programing\desempenho-de-algoritmos-de-ordenacao\algoritmosordenacao.h
+
+1745257015 source:c:\users\user\desktop\programing\desempenho-de-algoritmos-de-ordenacao\main.c
+	<stdio.h>
+	<stdlib.h>
+	"algoOrdena.h"
+	"algoritmosOrdenacao.h"
+

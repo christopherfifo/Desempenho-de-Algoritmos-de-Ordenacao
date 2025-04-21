@@ -81,3 +81,39 @@ double mediaTempo(int *v, int tamanho){
 ## obs: caso queira passar a função de exibir todos para o arquvio ``algoOrdena.c`` devera criar uma função no arquivo ``algoritimosOrdenacao.c`` para retornar o array de struct ou criar esse array no main e modificar todas as funções para recerber o vetor
 
 commit: christopher 19/04/2025 - 18:40
+
+
+    case 1:{
+        for(int i = 0; i < 10000; i++){
+        char *vetor = criaVetor(10000);
+        if(vetor == NULL) {
+            printf("Erro ao alocar memória\n");
+            return;
+        }
+        printf("\nVetor de 10.000 elementos:\n");
+
+        imprimirVetor(vetor, 10000);
+        printf("\n\n");
+
+        bubbleSort(vetor, 10000);
+        liberarVetor(vetor, 10000);
+        }
+    }
+    break;
+    case 2:{
+        for(int i = 0; i < 50000; i++){
+        char *vetor = criaVetor(50000);
+        if(vetor == NULL) {
+            printf("Erro ao alocar memória\n");
+            return;
+        }
+        printf("\nVetor de 50.000 elementos:\n");
+
+        imprimirVetor(vetor, 50000);
+        printf("\n\n");
+
+        bubbleSort(vetor, 50000);
+        liberarVetor(vetor, 50000);
+        }
+    }
+    break;

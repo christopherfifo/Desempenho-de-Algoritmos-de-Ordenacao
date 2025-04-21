@@ -8,18 +8,12 @@ struct timeval{
     long int tv_sec; 
     long int tv_usec; 
 };   
-struct Algoritimo{
-    char nome[40];
-    int tamanho;
-    float tempoTotal;
-    float melhorCaso;
-    float piorCaso;
-};
 
-struct Algoritimo Algoritimos[10]; 
+
+Algoritmo Algoritmos[11];
 
 //////// COUNTING SORT
-void countingSort(int inputArray[], int numElementos) {
+void countingSort(int inputArray[], int numElementos, int *VetorInvetido) {
     // 1º Passo:
     // Encontrar o maior número no array
     int maiorNumero = 0;
@@ -77,17 +71,17 @@ void countingSort(int inputArray[], int numElementos) {
 }
 
 //////// MERGE SORT
-void mergesort(int *v, int inicio, int fim){
+void mergesort(int *v, int inicio, int fim, int *VetorInvetido){
     int meio;
     if(inicio < fim){
         meio = (inicio + fim) / 2;
-        mergesort(v, inicio, meio);
-        mergesort(v, meio+1, fim);
-        merge(v, inicio, meio, fim);
+        mergesort(v, inicio, meio, VetorInvetido);
+        mergesort(v, meio+1, fim, VetorInvetido);
+        merge(v, inicio, meio, fim, VetorInvetido);
     }
 }
 
-void merge(int *v, int inicio, int meio, int fim){
+void merge(int *v, int inicio, int meio, int fim, int *VetorInvetido){
     int *temp, p1, p2, tamanho,i ,j, k;
     int fim1 = 0, fim2 = 0;
     tamanho = fim - inicio + 1; //tamanho do novo vetor
@@ -153,7 +147,7 @@ void maxHeapify(int arr[], int n, int i) {
 }
 
 // Função HeapSort usando Max-Heap (ordem crescente)
-void heapSortAscending(int arr[], int n) {
+void heapSortAscending(int arr[], int n, int *VetorInvetido) {
     for (int i = n / 2 - 1; i >= 0; i--)
         maxHeapify(arr, n, i);
 
@@ -164,7 +158,7 @@ void heapSortAscending(int arr[], int n) {
 }
 
 //////// SHELL SORT
-void ShellSort(int arr[], int tam) {
+void ShellSort(int arr[], int tam, int *VetorInvetido) {
     int intervalo, aux, i, j;
     for (intervalo = tam / 2; intervalo > 0; intervalo /= 2) {
         for (i = intervalo; i < tam; i++) {
@@ -184,7 +178,7 @@ int min(int a, int b) {
 }
 
 // Insertion Sort
-void insertSort(int array[], int esq, int dir) {
+void insertSort(int array[], int esq, int dir, int *VetorInvetido) {
     for (int i = esq + 1; i <= dir; i++) {
         int chave = array[i];
         int j = i - 1;
@@ -195,7 +189,7 @@ void insertSort(int array[], int esq, int dir) {
         array[j + 1] = chave;
     }
 }
-void timSort(int array[], int n) {
+void timSort(int array[], int n, int *VetorInvetido) {
     int runSize = 1;
     while (runSize * runSize < n) {
         runSize++;
@@ -203,7 +197,7 @@ void timSort(int array[], int n) {
 
     // Ordena pequenas partes com insertion sort
     for (int i = 0; i < n; i += runSize) {
-        insertSort(array, i, min((i + runSize - 1), (n - 1)));
+        insertSort(array, i, min((i + runSize - 1), (n - 1)), VetorInvetido);
     }
 
     // Mescla as partes ordenadas usando mergesort
@@ -212,7 +206,7 @@ void timSort(int array[], int n) {
             int meio = esq + tam - 1;
             int dir = min((esq + 2 * tam - 1), (n - 1));
             if (meio < dir) {
-                mergesort(array, esq, dir);
+                mergesort(array, esq, dir, VetorInvetido);
             }
         }
     }
@@ -226,7 +220,7 @@ typedef struct {
     int capacidade;
 } Balde;
 
-void bucketSort(int *vetor, int tamanho) {
+void bucketSort(int *vetor, int tamanho, int *VetorInvetido) {
     if (tamanho <= 0) return;
 
     int max = vetor[0];
@@ -261,7 +255,7 @@ void bucketSort(int *vetor, int tamanho) {
     int k = 0;
     for (int i = 0; i < numBuckets; i++) {
         if (baldes[i].tamanho > 0) {
-            insertSort(baldes[i].valor, 0, baldes[i].tamanho - 1);
+            insertSort(baldes[i].valor, 0, baldes[i].tamanho - 1, VetorInvetido);
             for (int j = 0; j < baldes[i].tamanho; j++) {
                 vetor[k++] = baldes[i].valor[j];
             }
@@ -276,7 +270,7 @@ void bucketSort(int *vetor, int tamanho) {
 
 // Uma fun��o para realizar o ordenamento por contagem
 // de arr[] de acordo com o d�gito representado por exp
-void countingSortBase10(int inputArray[], int numElementos, int exp) {
+void countingSortBase10(int inputArray[], int numElementos, int exp, int *VetorInvetido) {
     int* auxArray = (int*)calloc(10, sizeof(int));  // base 10
     int* arrayOrdenado = (int*)malloc(numElementos * sizeof(int));
 
@@ -322,10 +316,10 @@ unsigned int getMax(int *arr, int n) {
     return mx;
 }
 
-void radixSort(int *arr, int n) {
+void radixSort(int *arr, int n, int *VetorInvetido) {
     int max = getMax(arr, n);
     for (int exp = 1; max / exp > 0; exp *= 10) {
-        countingSortBase10(arr, n, exp);
+        countingSortBase10(arr, n, exp, VetorInvetido);
     }
 }
 
@@ -352,20 +346,20 @@ int divisao(int arr[], int low, int high) {
 }
 
 // Implementa��o recursiva do QuickSort
-void quickSort(int arr[], int low, int high) {
+void quickSort(int arr[], int low, int high, int *VetorInvetido) {
     if (low < high) {
         int pi = divisao(arr, low, high); // Encontra o �ndice do piv�
 
         // Chama o QuickSort recursivamente para as duas metades
-        quickSort(arr, low, pi - 1);
-        quickSort(arr, pi + 1, high);
+        quickSort(arr, low, pi - 1, VetorInvetido); // Antes do piv�
+        quickSort(arr, pi + 1, high, VetorInvetido); // Depois do piv�
     }
 }
 
 //////// BUBBLE SORT
 
 
-void bubbleSort(int arr[], int n) {
+void bubbleSort(int arr[], int n, int *VetorInvetido) {
     for (int i = 0; i < n - 1; i++) {
         // Últimos i elementos já estão no lugar
         for (int j = 0; j < n - i - 1; j++) {
@@ -382,7 +376,7 @@ void bubbleSort(int arr[], int n) {
 
 //////// SELECT SORT
 
-void selectionSort(int arr[], int n) {
+void selectionSort(int arr[], int n, int *VetorInvetido) {
     for (int i = 0; i < n - 1; i++) {
         int minIndex = i;
         for (int j = i + 1; j < n; j++) {
@@ -399,26 +393,27 @@ void selectionSort(int arr[], int n) {
 }
 
 
-void salvaResultados(char nome[], int tamanho, double tempoTotal, double melhorCaso, double piorCaso){
-    if (elementoDaestrutura >= 10) {
+int salvaResultados(char nome[], int tamanho, double tempoTotal, double melhorCaso, double piorCaso) {
+    if (elementoDaestrutura >= 11) {
         printf("Limite de algoritmos atingido.\n");
         return -1;
     }
 
-    strcpy(Algoritimos[elementoDaestrutura].nome, nome); 
-    Algoritimos[elementoDaestrutura].tamanho = tamanho;
-    Algoritimos[elementoDaestrutura].tempoTotal = tempoTotal;
-    Algoritimos[elementoDaestrutura].melhorCaso = melhorCaso;
-    Algoritimos[elementoDaestrutura].piorCaso = piorCaso;
+    strcpy(Algoritmos[elementoDaestrutura].nome, nome);  
+    Algoritmos[elementoDaestrutura].tamanho = tamanho;
+    Algoritmos[elementoDaestrutura].tempoTotal = tempoTotal;
+    Algoritmos[elementoDaestrutura].melhorCaso = melhorCaso;
+    Algoritmos[elementoDaestrutura].piorCaso = piorCaso;
 
     elementoDaestrutura++;
-};
+    return 0;
+}
 
 void exibeTodosOsAlgoritmos(){
     printf("Algoritmos Salvos:\n");
-    for (int i = 0; i < 10; i++){
+    for (int i = 0; i < 11; i++){
         printf("---------------ALGORITIMOS--------------------\n");
-        exibirAlgoritmo(Algoritimos[i].nome, Algoritimos[i].tamanho, Algoritimos[i].tempoTotal, Algoritimos[i].melhorCaso, Algoritimos[i].piorCaso);
+        exibirAlgoritmo(Algoritmos[i].nome, Algoritmos[i].tamanho, Algoritmos[i].tempoTotal, Algoritmos[i].melhorCaso, Algoritmos[i].piorCaso);
     }
 };
 
@@ -435,3 +430,35 @@ double mediaTempo(int *v, int tamanho){
     return totalTempo;
 }
 
+int criaVetor(int tamanho){
+    int *vetor = (int *)malloc(tamanho * sizeof(char));
+    if (vetor == NULL) {
+        printf("Erro ao alocar memória para o vetor.\n");
+        return NULL;
+    }
+
+    for (int i = 0; i < tamanho; i++) {
+        vetor[i] = rand() % tamanho; 
+    }
+
+    return vetor;
+}
+
+void liberarVetor(int *array){
+    free(array);
+}
+
+void imprimirVetor(int vetor[], int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        printf("%d ", vetor[i]);
+    }
+    printf("\n");
+}
+
+void inverteVetor(int *array, int tamanho){
+    for (int i = 0; i < tamanho / 2; i++){
+        int temp = array[i];
+        array[i] = array[tamanho - i - 1];
+        array[tamanho - i - 1] = temp;
+    }
+}
