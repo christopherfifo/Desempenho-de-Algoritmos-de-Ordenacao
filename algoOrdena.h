@@ -11,4 +11,6 @@ void criaVetor(int *vetor, int tamanho);
 
 double calculaTempo(struct timeval tempoInicial, struct timeval tempoFinal);
 
+void exibirTempos(double TEMPOS[]);
+
 #endif // ALGOORDENA_H_INCLUDED
