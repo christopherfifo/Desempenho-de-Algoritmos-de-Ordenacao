@@ -78,7 +78,7 @@ int menuprincipal()
     if (slcAlgoritmo == 12)
     {
         printf("Saindo do programa...\n");
-        return 0; // sair do programa
+        exit(0);
     }
 
     if (slcAlgoritmo < 1 || slcAlgoritmo > 12)
