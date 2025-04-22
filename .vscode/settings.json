@@ -59,5 +59,6 @@
   "files.associations": {
     "*.embeddedhtml": "html",
     "windows.h": "c"
-  }
+  },
+  "C_Cpp.default.compilerPath": "D:/Program Files/msys64/ucrt64/bin/gcc.exe"
 }
