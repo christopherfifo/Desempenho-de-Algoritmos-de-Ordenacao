@@ -118,29 +118,7 @@ int menuprincipal()
         }
 
         printf("\nTempos de execucao do Bubble Sort:\n");
-        double melhor, pior, total;
-        melhor = TEMPOS[0];
-        pior = TEMPOS[11];
-
-        for (int i = 0; i < 12; i++)
-        {
-            printf("Execucao %d: %.6f segundos\n", i + 1, TEMPOS[i]);
-            if (TEMPOS[i] < melhor)
-            {
-                melhor = TEMPOS[i];
-            }
-            if (TEMPOS[i] > pior)
-            {
-                pior = TEMPOS[i];
-            }
-            total += TEMPOS[i];
-        }
-
-        printf("\n\n");
-        printf("Melhor tempo: %.6f segundos\n", melhor);
-        printf("Pior tempo: %.6f segundos\n", pior);
-        printf("Tempo medio: %.6f segundos\n", total / 12);
-        printf("Tempo total: %.6f segundos\n", total);
+        exibirTempos(TEMPOS);
     }
     break;
 
@@ -177,29 +155,7 @@ int menuprincipal()
         }
 
         printf("\nTempos de execucao do Insertion Sort:\n");
-        double melhor, pior, total;
-        melhor = TEMPOS[0];
-        pior = TEMPOS[11];
-
-        for (int i = 0; i < 12; i++)
-        {
-            printf("Execucao %d: %.6f segundos\n", i + 1, TEMPOS[i]);
-            if (TEMPOS[i] < melhor)
-            {
-                melhor = TEMPOS[i];
-            }
-            if (TEMPOS[i] > pior)
-            {
-                pior = TEMPOS[i];
-            }
-            total += TEMPOS[i];
-        }
-
-        printf("\n\n");
-        printf("Melhor tempo: %.6f segundos\n", melhor);
-        printf("Pior tempo: %.6f segundos\n", pior);
-        printf("Tempo medio: %.6f segundos\n", total / 12);
-        printf("Tempo total: %.6f segundos\n", total);
+        exibirTempos(TEMPOS);
     }
     break;
 
@@ -236,29 +192,7 @@ int menuprincipal()
         }
 
         printf("\nTempos de execucao do Selection Sort:\n");
-        double melhor, pior, total;
-        melhor = TEMPOS[0];
-        pior = TEMPOS[11];
-
-        for (int i = 0; i < 12; i++)
-        {
-            printf("Execucao %d: %.6f segundos\n", i + 1, TEMPOS[i]);
-            if (TEMPOS[i] < melhor)
-            {
-                melhor = TEMPOS[i];
-            }
-            if (TEMPOS[i] > pior)
-            {
-                pior = TEMPOS[i];
-            }
-            total += TEMPOS[i];
-        }
-
-        printf("\n\n");
-        printf("Melhor tempo: %.6f segundos\n", melhor);
-        printf("Pior tempo: %.6f segundos\n", pior);
-        printf("Tempo medio: %.6f segundos\n", total / 12);
-        printf("Tempo total: %.6f segundos\n", total);
+        exibirTempos(TEMPOS);
     }
     break;
 
@@ -295,29 +229,7 @@ int menuprincipal()
         }
 
         printf("\nTempos de execucao do Shell Sort:\n");
-        double melhor, pior, total;
-        melhor = TEMPOS[0];
-        pior = TEMPOS[11];
-
-        for (int i = 0; i < 12; i++)
-        {
-            printf("Execucao %d: %.6f segundos\n", i + 1, TEMPOS[i]);
-            if (TEMPOS[i] < melhor)
-            {
-                melhor = TEMPOS[i];
-            }
-            if (TEMPOS[i] > pior)
-            {
-                pior = TEMPOS[i];
-            }
-            total += TEMPOS[i];
-        }
-
-        printf("\n\n");
-        printf("Melhor tempo: %.6f segundos\n", melhor);
-        printf("Pior tempo: %.6f segundos\n", pior);
-        printf("Tempo medio: %.6f segundos\n", total / 12);
-        printf("Tempo total: %.6f segundos\n", total);
+        exibirTempos(TEMPOS);
     }
     break;
 
@@ -354,29 +266,7 @@ int menuprincipal()
         }
 
         printf("\nTempos de execucao do Merge Sort:\n");
-        double melhor, pior, total;
-        melhor = TEMPOS[0];
-        pior = TEMPOS[11];
-
-        for (int i = 0; i < 12; i++)
-        {
-            printf("Execucao %d: %.6f segundos\n", i + 1, TEMPOS[i]);
-            if (TEMPOS[i] < melhor)
-            {
-                melhor = TEMPOS[i];
-            }
-            if (TEMPOS[i] > pior)
-            {
-                pior = TEMPOS[i];
-            }
-            total += TEMPOS[i];
-        }
-
-        printf("\n\n");
-        printf("Melhor tempo: %.6f segundos\n", melhor);
-        printf("Pior tempo: %.6f segundos\n", pior);
-        printf("Tempo medio: %.6f segundos\n", total / 12);
-        printf("Tempo total: %.6f segundos\n", total);
+        exibirTempos(TEMPOS);
     }
     break;
 
@@ -413,29 +303,7 @@ int menuprincipal()
         }
 
         printf("\nTempos de execucao do Quick Sort:\n");
-        double melhor, pior, total;
-        melhor = TEMPOS[0];
-        pior = TEMPOS[11];
-
-        for (int i = 0; i < 12; i++)
-        {
-            printf("Execucao %d: %.6f segundos\n", i + 1, TEMPOS[i]);
-            if (TEMPOS[i] < melhor)
-            {
-                melhor = TEMPOS[i];
-            }
-            if (TEMPOS[i] > pior)
-            {
-                pior = TEMPOS[i];
-            }
-            total += TEMPOS[i];
-        }
-
-        printf("\n\n");
-        printf("Melhor tempo: %.6f segundos\n", melhor);
-        printf("Pior tempo: %.6f segundos\n", pior);
-        printf("Tempo medio: %.6f segundos\n", total / 12);
-        printf("Tempo total: %.6f segundos\n", total);
+        exibirTempos(TEMPOS);
     }
     break;
 
@@ -472,29 +340,7 @@ int menuprincipal()
         }
 
         printf("\nTempos de execucao do Heap Sort:\n");
-        double melhor, pior, total;
-        melhor = TEMPOS[0];
-        pior = TEMPOS[11];
-
-        for (int i = 0; i < 12; i++)
-        {
-            printf("Execucao %d: %.6f segundos\n", i + 1, TEMPOS[i]);
-            if (TEMPOS[i] < melhor)
-            {
-                melhor = TEMPOS[i];
-            }
-            if (TEMPOS[i] > pior)
-            {
-                pior = TEMPOS[i];
-            }
-            total += TEMPOS[i];
-        }
-
-        printf("\n\n");
-        printf("Melhor tempo: %.6f segundos\n", melhor);
-        printf("Pior tempo: %.6f segundos\n", pior);
-        printf("Tempo medio: %.6f segundos\n", total / 12);
-        printf("Tempo total: %.6f segundos\n", total);
+        exibirTempos(TEMPOS);
     }
     break;
 
@@ -531,29 +377,7 @@ int menuprincipal()
         }
 
         printf("\nTempos de execucao do Bucket Sort:\n");
-        double melhor, pior, total;
-        melhor = TEMPOS[0];
-        pior = TEMPOS[11];
-
-        for (int i = 0; i < 12; i++)
-        {
-            printf("Execucao %d: %.6f segundos\n", i + 1, TEMPOS[i]);
-            if (TEMPOS[i] < melhor)
-            {
-                melhor = TEMPOS[i];
-            }
-            if (TEMPOS[i] > pior)
-            {
-                pior = TEMPOS[i];
-            }
-            total += TEMPOS[i];
-        }
-
-        printf("\n\n");
-        printf("Melhor tempo: %.6f segundos\n", melhor);
-        printf("Pior tempo: %.6f segundos\n", pior);
-        printf("Tempo medio: %.6f segundos\n", total / 12);
-        printf("Tempo total: %.6f segundos\n", total);
+        exibirTempos(TEMPOS);
     }
     break;
 
@@ -590,29 +414,7 @@ int menuprincipal()
         }
 
         printf("\nTempos de execucao do Radix Sort:\n");
-        double melhor, pior, total;
-        melhor = TEMPOS[0];
-        pior = TEMPOS[11];
-
-        for (int i = 0; i < 12; i++)
-        {
-            printf("Execucao %d: %.6f segundos\n", i + 1, TEMPOS[i]);
-            if (TEMPOS[i] < melhor)
-            {
-                melhor = TEMPOS[i];
-            }
-            if (TEMPOS[i] > pior)
-            {
-                pior = TEMPOS[i];
-            }
-            total += TEMPOS[i];
-        }
-
-        printf("\n\n");
-        printf("Melhor tempo: %.6f segundos\n", melhor);
-        printf("Pior tempo: %.6f segundos\n", pior);
-        printf("Tempo medio: %.6f segundos\n", total / 12);
-        printf("Tempo total: %.6f segundos\n", total);
+        exibirTempos(TEMPOS);
     }
     break;
 
@@ -649,29 +451,7 @@ int menuprincipal()
         }
 
         printf("\nTempos de execucao do Counting Sort:\n");
-        double melhor, pior, total;
-        melhor = TEMPOS[0];
-        pior = TEMPOS[11];
-
-        for (int i = 0; i < 12; i++)
-        {
-            printf("Execucao %d: %.6f segundos\n", i + 1, TEMPOS[i]);
-            if (TEMPOS[i] < melhor)
-            {
-                melhor = TEMPOS[i];
-            }
-            if (TEMPOS[i] > pior)
-            {
-                pior = TEMPOS[i];
-            }
-            total += TEMPOS[i];
-        }
-
-        printf("\n\n");
-        printf("Melhor tempo: %.6f segundos\n", melhor);
-        printf("Pior tempo: %.6f segundos\n", pior);
-        printf("Tempo medio: %.6f segundos\n", total / 12);
-        printf("Tempo total: %.6f segundos\n", total);
+        exibirTempos(TEMPOS);
     }
     break;
 
@@ -708,29 +488,7 @@ int menuprincipal()
         }
 
         printf("\nTempos de execucao do Tim Sort:\n");
-        double melhor, pior, total;
-        melhor = TEMPOS[0];
-        pior = TEMPOS[11];
-
-        for (int i = 0; i < 12; i++)
-        {
-            printf("Execucao %d: %.6f segundos\n", i + 1, TEMPOS[i]);
-            if (TEMPOS[i] < melhor)
-            {
-                melhor = TEMPOS[i];
-            }
-            if (TEMPOS[i] > pior)
-            {
-                pior = TEMPOS[i];
-            }
-            total += TEMPOS[i];
-        }
-
-        printf("\n\n");
-        printf("Melhor tempo: %.6f segundos\n", melhor);
-        printf("Pior tempo: %.6f segundos\n", pior);
-        printf("Tempo medio: %.6f segundos\n", total / 12);
-        printf("Tempo total: %.6f segundos\n", total);
+        exibirTempos(TEMPOS);
     }
     break;
 
@@ -773,4 +531,33 @@ double calculaTempo(struct timeval tempoInicial, struct timeval tempoFinal)
     double inicio = tempoInicial.tv_sec + tempoInicial.tv_usec / 1000000.0;
     double fim = tempoFinal.tv_sec + tempoFinal.tv_usec / 1000000.0;
     return fim - inicio;
+}
+
+void exibirTempos(double TEMPOS[])
+{
+    double melhor = TEMPOS[0];
+    double pior = TEMPOS[0];
+    double total = 0.0;
+
+    for (int i = 0; i < 12; i++)
+    {
+        printf("Execucao %d: %.6f segundos\n", i + 1, TEMPOS[i]);
+
+        if (TEMPOS[i] < melhor)
+        {
+            melhor = TEMPOS[i];
+        }
+        if (TEMPOS[i] > pior)
+        {
+            pior = TEMPOS[i];
+        }
+
+        total += TEMPOS[i];
+    }
+
+    printf("\n\n");
+    printf("Melhor tempo: %.6f segundos\n", melhor);
+    printf("Pior tempo: %.6f segundos\n", pior);
+    printf("Tempo medio: %.6f segundos\n", total / 12);
+    printf("Tempo total: %.6f segundos\n", total);
 }
