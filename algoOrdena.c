@@ -45,25 +45,17 @@ void menuquantidade()
         slcQuantidade = 100000000;   
         break;
     case 7:
-        menuprincipal();
+        slcQuantidade = 0;
         break;
     default:
         printf("Opção inválida. Tente novamente.\n");
         menuquantidade();
-        break;
     }
     printf("A quantidade de elementos escolhida foi: %d\n", slcQuantidade);
 }
 
 int menuprincipal()
 {
-    int *vetor = (int *)malloc(slcQuantidade * sizeof(int));
-    if (vetor == NULL)
-    {
-        printf("Erro ao alocar memória para o vetor.\n");
-        return NULL;
-    }
-
     printf("///////////////////\n");
     printf("MENU PRINCIPAL\n");
     printf("///////////////////\n");
@@ -83,13 +75,39 @@ int menuprincipal()
     printf("Digite o numero corresponde: ");
     scanf("%d", &slcAlgoritmo);
 
+    if (slcAlgoritmo == 12)
+    {
+        printf("Saindo do programa...\n");
+        return 0; // sair do programa
+    }
+
+    if (slcAlgoritmo < 1 || slcAlgoritmo > 12)
+    {
+        printf("Opcao invalida. Tente novamente.\n");
+        return menuprincipal();
+    }
+
+    menuquantidade();
+    if (slcQuantidade == 0)
+    {
+        return menuprincipal();
+    }
+
+    int *vetor = (int *)malloc(slcQuantidade * sizeof(int));
+    if (vetor == NULL)
+    {
+        printf("Erro ao alocar memória para o vetor.\n");
+        return -1;
+    }
+
+    double TEMPOS[12];
+    struct timeval inicio, fim;
+
     switch (slcAlgoritmo)
     {
     // Bubble Sort
     case 1:
     {
-        double TEMPOS[12];
-        struct timeval inicio, fim;
 
         for (int i = 0; i < 12; i++)
         {
@@ -125,8 +143,6 @@ int menuprincipal()
         // Insertion Sort
     case 2:
     {
-        double TEMPOS[12];
-        struct timeval inicio, fim;
 
         for (int i = 0; i < 12; i++)
         {
@@ -162,8 +178,6 @@ int menuprincipal()
     // Selection Sort
     case 3:
     {
-        double TEMPOS[12];
-        struct timeval inicio, fim;
 
         for (int i = 0; i < 12; i++)
         {
@@ -199,8 +213,6 @@ int menuprincipal()
     // Shell Sort
     case 4:
     {
-        double TEMPOS[12];
-        struct timeval inicio, fim;
 
         for (int i = 0; i < 12; i++)
         {
@@ -236,8 +248,6 @@ int menuprincipal()
     // Merge Sort
     case 5:
     {
-        double TEMPOS[12];
-        struct timeval inicio, fim;
 
         for (int i = 0; i < 12; i++)
         {
@@ -273,8 +283,6 @@ int menuprincipal()
     // Quick Sort
     case 6:
     {
-        double TEMPOS[12];
-        struct timeval inicio, fim;
 
         for (int i = 0; i < 12; i++)
         {
@@ -310,8 +318,6 @@ int menuprincipal()
     // Heap Sort
     case 7:
     {
-        double TEMPOS[12];
-        struct timeval inicio, fim;
 
         for (int i = 0; i < 12; i++)
         {
@@ -347,8 +353,6 @@ int menuprincipal()
     // Bucket Sort
     case 8:
     {
-        double TEMPOS[12];
-        struct timeval inicio, fim;
 
         for (int i = 0; i < 12; i++)
         {
@@ -384,8 +388,6 @@ int menuprincipal()
     // Radix Sort
     case 9:
     {
-        double TEMPOS[12];
-        struct timeval inicio, fim;
 
         for (int i = 0; i < 12; i++)
         {
@@ -421,8 +423,6 @@ int menuprincipal()
     // Counting Sort
     case 10:
     {
-        double TEMPOS[12];
-        struct timeval inicio, fim;
 
         for (int i = 0; i < 12; i++)
         {
@@ -458,8 +458,6 @@ int menuprincipal()
     // Tim Sort
     case 11:
     {
-        double TEMPOS[12];
-        struct timeval inicio, fim;
 
         for (int i = 0; i < 12; i++)
         {
@@ -491,20 +489,10 @@ int menuprincipal()
         exibirTempos(TEMPOS);
     }
     break;
-
-    case 12:
-        printf("Saindo do programa...\n");
-        exit(0);
-        break;
-
-    default:
-        printf("Opção inválida.\n");
-        menuprincipal();
-        break;
     }
 
     free(vetor);
-    return 0;
+    return 1; // continuar
 }
 
 // FUNÇÕOES AUXILIARES
@@ -559,4 +547,5 @@ void exibirTempos(double TEMPOS[])
     printf("Pior tempo: %.6f segundos\n", pior);
     printf("Tempo medio: %.6f segundos\n", total / 12);
     printf("Tempo total: %.6f segundos\n", total);
+    system("pause");
 }

@@ -7,10 +7,12 @@
 int main()
 {
     srand(time(NULL));
-    menuquantidade();
 
-    menuprincipal();
-    system("pause");
-    exit(0);
+    int continuar = 1;
+    while (continuar)
+    {
+        continuar = menuprincipal();
+    }
+
     return 0;
 }
