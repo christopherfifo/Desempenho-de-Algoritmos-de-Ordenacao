@@ -1,69 +1,42 @@
 #ifndef ALGORITMOSORDENACAO_H_INCLUDED
 #define ALGORITMOSORDENACAO_H_INCLUDED
 
-struct timeval
-{
-    long int tv_sec;
-    long int tv_usec;
-};
-
-typedef struct
-{
-    char nome[40];
-    int tamanho;
-    double tempoTotal;
-    double media;
-    double melhorCaso;
-    double piorCaso;
-} Algoritmo;
-
 // COUNTING SORT
-void countingSort(int inputArray[], int numElementos, int *VetorInvetido);
+void countingSort(int inputArray[], int numElementos);
 
 // MERGE SORT
-void mergesort(int *v, int inicio, int fim, int *VetorInvetido);
-void merge(int *v, int inicio, int meio, int fim, int *VetorInvetido);
+void mergesort(int *v, int inicio, int fim);
+void merge(int *v, int inicio, int meio, int fim);
 
 // HEAP SORT
-void heapSortAscending(int arr[], int n, int *VetorInvetido);
+void heapSortAscending(int arr[], int n);
 
 // SHELL SORT
-void ShellSort(int arr[], int tam, int *VetorInvetido);
+void ShellSort(int arr[], int tam);
 
 // TIM SORT
-void timSort(int array[], int n, int *VetorInvetido);
+void timSort(int array[], int n);
 
-void bucketSort(int *vetor, int tamanho, int *VetorInvetido);
+void bucketSort(int *vetor, int tamanho);
 
 // RADIX SORT
-void countingSortBase10(int inputArray[], int numElementos, int exp, int *VetorInvetido);
+void countingSortBase10(int inputArray[], int numElementos, int exp);
 unsigned int getMax(int *arr, int n);
-void radixSort(int *arr, int n, int *VetorInvetido);
+void radixSort(int *arr, int n);
+
+//BUCKET SORT
+void bucketSort(int *vetor, int tamanho);
 
 // QUICK SORT
-void quickSort(int arr[], int low, int high, int *VetorInvetido);
+void quickSort(int arr[], int low, int high);
 
 // INSERTION SORT
-void insertSort(int array[], int esq, int dir, int *VetorInvetido);
+void insertSort(int array[], int esq, int dir);
 
 // BUBBLE SORT
-void bubbleSort(int arr[], int n, int *VetorInvetido);
+void bubbleSort(int arr[], int n);
 
 // SELECT SORT
-void selectionSort(int arr[], int n, int *VetorInvetido);
-
-int *criaVetor(int tamanho);
-
-void inverteVetor(int *array, int tamanho);
-
-void liberarVetor(int *array);
-
-double mediaTempo(double *tempos, int tamanho);
-
-int salvaResultados(char nome[], int tamanho, double tempoTotal, double media, double melhorCaso, double piorCaso);
-
-void imprimirVetor(int vetor[], int tamanho);
-
-void exibirAlgoritmo(char nome[], int tamanho, double tempoTotal, double media, double melhorCaso, double piorCaso);
+void selectionSort(int arr[], int n);
 
 #endif // ALGORITMOSORDENACAO_H_INCLUDED

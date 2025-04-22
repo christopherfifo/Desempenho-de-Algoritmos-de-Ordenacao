@@ -2,12 +2,8 @@
 #include <stdlib.h>
 #include "algoritmosOrdenacao.h"
 
-int elementoDaestrutura = 0;
-
-Algoritmo Algoritmos[11];
-
 //////// COUNTING SORT
-void countingSort(int inputArray[], int numElementos, int *VetorInvetido)
+void countingSort(int inputArray[], int numElementos)
 {
 
 //commit aqui tem que por a função de tempo
@@ -68,21 +64,6 @@ void countingSort(int inputArray[], int numElementos, int *VetorInvetido)
     {
         inputArray[i] = arrayOrdenado[i];
     }
-
-if(VetorInvetido != NULL)
-    {
-        countingSort(inputArray, numElementos, NULL);
-        inverteVetor(inputArray, numElementos);
-        countingSort(inputArray, numElementos, NULL);
-        free(auxArray);
-        free(arrayOrdenado);
-        return;
-    }
-
-
-    salvaResultados("CountingSort", numElementos, 0, 0, 0, 0);
-    exibirAlgoritmo("CountingSort", numElementos, 0, 0, 0, 0);
-
     // Liberando a memória alocada
     free(auxArray);
     free(arrayOrdenado);
@@ -90,30 +71,19 @@ if(VetorInvetido != NULL)
 }
 
 //////// MERGE SORT
-void mergesort(int *v, int inicio, int fim, int *VetorInvetido)
+void mergesort(int *v, int inicio, int fim)
 {
     int meio;
     if (inicio < fim)
     {
         meio = (inicio + fim) / 2;
-        mergesort(v, inicio, meio, VetorInvetido);
-        mergesort(v, meio + 1, fim, VetorInvetido);
-        merge(v, inicio, meio, fim, VetorInvetido);
+        mergesort(v, inicio, meio);
+        mergesort(v, meio + 1, fim);
+        merge(v, inicio, meio, fim);
     }
-
-    if (VetorInvetido != NULL)
-    {
-        mergesort(v, inicio, fim, NULL);
-        inverteVetor(v, fim - inicio + 1);
-        mergesort(v, inicio, fim, NULL);
-        return;
-    }
-        salvaResultados("MergeSort", fim - inicio + 1, 0, 0, 0, 0);
-        exibirAlgoritmo("MergeSort", fim - inicio + 1, 0, 0, 0, 0);
-  
 }
 
-void merge(int *v, int inicio, int meio, int fim, int *VetorInvetido)
+void merge(int *v, int inicio, int meio, int fim)
 {
     int *temp, p1, p2, tamanho, i, j, k;
     int fim1 = 0, fim2 = 0;
@@ -200,7 +170,7 @@ void maxHeapify(int arr[], int n, int i)
 }
 
 // Função HeapSort usando Max-Heap (ordem crescente)
-void heapSortAscending(int arr[], int n, int *VetorInvetido)
+void heapSortAscending(int arr[], int n)
 {
     for (int i = n / 2 - 1; i >= 0; i--)
         maxHeapify(arr, n, i);
@@ -211,19 +181,10 @@ void heapSortAscending(int arr[], int n, int *VetorInvetido)
         maxHeapify(arr, i, 0);
     }
 
-    if (VetorInvetido != NULL)
-    {
-        heapSortAscending(arr, n, NULL);
-        inverteVetor(arr, n);
-        heapSortAscending(arr, n, NULL);
-        return;
-    }
-    salvaResultados("HeapSort", n, 0, 0, 0, 0);
-    exibirAlgoritmo("HeapSort", n, 0, 0, 0, 0);
 }
 
 //////// SHELL SORT
-void ShellSort(int arr[], int tam, int *VetorInvetido)
+void ShellSort(int arr[], int tam)
 {
     int intervalo, aux, i, j;
     for (intervalo = tam / 2; intervalo > 0; intervalo /= 2)
@@ -238,16 +199,6 @@ void ShellSort(int arr[], int tam, int *VetorInvetido)
             arr[j] = aux;
         }
     }
-
-    if (VetorInvetido != NULL)
-    {
-        ShellSort(arr, tam, NULL);
-        inverteVetor(arr, tam);
-        ShellSort(arr, tam, NULL);
-        return;
-    }
-    salvaResultados("ShellSort", tam, 0, 0, 0, 0);
-    exibirAlgoritmo("ShellSort", tam, 0, 0, 0, 0);
 }
 
 //////// TIM SORT
@@ -258,7 +209,7 @@ int minValue(int a, int b)
 }
 
 // Insertion Sort
-void insertSort(int array[], int esq, int dir, int *VetorInvetido)
+void insertSort(int array[], int esq, int dir)
 {
     for (int i = esq + 1; i <= dir; i++)
     {
@@ -273,7 +224,7 @@ void insertSort(int array[], int esq, int dir, int *VetorInvetido)
     }
 }
 
-void timSort(int array[], int n, int *VetorInvetido)
+void timSort(int array[], int n)
 {
     int runSize = 1;
     while (runSize * runSize < n)
@@ -284,7 +235,7 @@ void timSort(int array[], int n, int *VetorInvetido)
     // Ordena pequenas partes com insertion sort
     for (int i = 0; i < n; i += runSize)
     {
-        insertSort(array, i, minValue((i + runSize - 1), (n - 1)), VetorInvetido);
+        insertSort(array, i, minValue((i + runSize - 1), (n - 1)));
     }
 
     // Mescla as partes ordenadas usando mergesort
@@ -296,20 +247,10 @@ void timSort(int array[], int n, int *VetorInvetido)
             int dir = minValue((esq + 2 * tam - 1), (n - 1));
             if (meio < dir)
             {
-                mergesort(array, esq, dir, VetorInvetido);
+                mergesort(array, esq, dir);
             }
         }
     }
-
-    if (VetorInvetido != NULL)
-    {
-        timSort(array, n, NULL);
-        inverteVetor(array, n);
-        timSort(array, n, NULL);
-        return;
-    }
-    salvaResultados("TimSort", n, 0, 0, 0, 0);
-    exibirAlgoritmo("TimSort", n, 0, 0, 0, 0);
 }
 
 //////// BUCKET SORT
@@ -321,7 +262,7 @@ typedef struct
     int capacidade;
 } Balde;
 
-void bucketSort(int *vetor, int tamanho, int *VetorInvetido)
+void bucketSort(int *vetor, int tamanho)
 {
     if (tamanho <= 0)
         return;
@@ -365,7 +306,7 @@ void bucketSort(int *vetor, int tamanho, int *VetorInvetido)
     {
         if (baldes[i].tamanho > 0)
         {
-            insertSort(baldes[i].valor, 0, baldes[i].tamanho - 1, VetorInvetido);
+            insertSort(baldes[i].valor, 0, baldes[i].tamanho - 1);
             for (int j = 0; j < baldes[i].tamanho; j++)
             {
                 vetor[k++] = baldes[i].valor[j];
@@ -373,7 +314,6 @@ void bucketSort(int *vetor, int tamanho, int *VetorInvetido)
         }
         free(baldes[i].valor);
     }
-
     free(baldes);
 }
 
@@ -381,7 +321,7 @@ void bucketSort(int *vetor, int tamanho, int *VetorInvetido)
 
 // Uma fun��o para realizar o ordenamento por contagem
 // de arr[] de acordo com o d�gito representado por exp
-void countingSortBase10(int inputArray[], int numElementos, int exp, int *VetorInvetido)
+void countingSortBase10(int inputArray[], int numElementos, int exp)
 {
     int *auxArray = (int *)calloc(10, sizeof(int)); // base 10
     int *arrayOrdenado = (int *)malloc(numElementos * sizeof(int));
@@ -434,12 +374,12 @@ unsigned int getMax(int *arr, int n)
     return mx;
 }
 
-void radixSort(int *arr, int n, int *VetorInvetido)
+void radixSort(int *arr, int n)
 {
     int max = getMax(arr, n);
     for (int exp = 1; max / exp > 0; exp *= 10)
     {
-        countingSortBase10(arr, n, exp, VetorInvetido);
+        countingSortBase10(arr, n, exp);
     }
 }
 
@@ -454,37 +394,34 @@ void troca(int *a, int *b)
 // Fun��o de parti��o
 int divisao(int arr[], int low, int high)
 {
-    int pivot = arr[high]; // Escolhe o �ltimo elemento como piv�
-    int i = (low - 1);     // �ndice do menor elemento
-
-    for (int j = low; j < high; j++)
-    {
-        if (arr[j] < pivot)
-        {                            // Se o elemento for menor que o piv�
-            i++;                     // Move o �ndice do menor elemento
-            troca(&arr[i], &arr[j]); // Troca os elementos
+    int pivot = arr[high];
+    int i = (low - 1);
+    for (int j = low; j < high; j++) {
+        if (arr[j] <= pivot) {
+            i++;
+            swap(&arr[i], &arr[j]);
         }
     }
-    troca(&arr[i + 1], &arr[high]); // Coloca o piv� na posi��o correta
-    return (i + 1);                 // Retorna o �ndice do piv�
+    troca(&arr[i + 1], &arr[high]);
+    return (i + 1);
 }
 
 // Implementa��o recursiva do QuickSort
-void quickSort(int arr[], int low, int high, int *VetorInvetido)
+void quickSort(int arr[], int low, int high)
 {
     if (low < high)
     {
         int pi = divisao(arr, low, high); // Encontra o �ndice do piv�
 
         // Chama o QuickSort recursivamente para as duas metades
-        quickSort(arr, low, pi - 1, VetorInvetido);  // Antes do piv�
-        quickSort(arr, pi + 1, high, VetorInvetido); // Depois do piv�
+        quickSort(arr, low, pi - 1);  // Antes do piv�
+        quickSort(arr, pi + 1, high); // Depois do piv�
     }
 }
 
 //////// BUBBLE SORT
 
-void bubbleSort(int arr[], int n, int *VetorInvetido)
+void bubbleSort(int arr[], int n)
 {
     for (int i = 0; i < n - 1; i++)
     {
@@ -504,7 +441,7 @@ void bubbleSort(int arr[], int n, int *VetorInvetido)
 
 //////// SELECT SORT
 
-void selectionSort(int arr[], int n, int *VetorInvetido)
+void selectionSort(int arr[], int n)
 {
     for (int i = 0; i < n - 1; i++)
     {
@@ -522,97 +459,5 @@ void selectionSort(int arr[], int n, int *VetorInvetido)
             arr[i] = arr[minIndex];
             arr[minIndex] = temp;
         }
-    }
-}
-
-int salvaResultados(char nome[], int tamanho, double tempoTotal, double media, double melhorCaso, double piorCaso)
-{
-    if (elementoDaestrutura >= 11)
-    {
-        printf("Limite de algoritmos atingido.\n");
-        return -1;
-    }
-
-    strcpy(Algoritmos[elementoDaestrutura].nome, nome);
-    Algoritmos[elementoDaestrutura].tamanho = tamanho;
-    Algoritmos[elementoDaestrutura].tempoTotal = tempoTotal;
-    Algoritmos[elementoDaestrutura].media = media;
-    Algoritmos[elementoDaestrutura].melhorCaso = melhorCaso;
-    Algoritmos[elementoDaestrutura].piorCaso = piorCaso;
-
-    elementoDaestrutura++;
-    return 0;
-}
-
-void exibirAlgoritmo(char nome[], int tamanho, double tempoTotal, double media, double melhorCaso, double piorCaso)
-{
-    printf("\n--------------------------------------------------\n");
-    printf("Algoritmo: %s\n", nome);
-    printf("Tamanho: %d\n", tamanho);
-    printf("Tempo Total: %.2f ms\n", tempoTotal);
-    printf("Media: %.2f ms\n", media);
-    printf("Melhor Caso: %.2f ms\n", melhorCaso);
-    printf("Pior Caso: %.2f ms\n", piorCaso);
-    printf("\n");
-};
-
-void exibeTodosOsAlgoritmos()
-{
-    printf("Algoritmos Salvos:\n");
-    for (int i = 0; i < 11; i++)
-    {
-        printf("---------------ALGORITIMOS--------------------\n");
-        exibirAlgoritmo(Algoritmos[i].nome, Algoritmos[i].tamanho, Algoritmos[i].tempoTotal, Algoritmos[i].media, Algoritmos[i].melhorCaso, Algoritmos[i].piorCaso);
-    }
-}
-
-double mediaTempo(double *tempos, int tamanho)
-{
-    double soma = 0;
-    for (int i = 0; i < tamanho; i++)
-    {
-        soma += tempos[i];
-    }
-    return soma / tamanho;
-}
-
-int *criaVetor(int tamanho)
-{
-    int *vetor = (int *)malloc(tamanho * sizeof(int));
-    if (vetor == NULL)
-    {
-        printf("Erro ao alocar memória para o vetor.\n");
-        return NULL;
-    }
-
-    for (int i = 0; i < tamanho; i++)
-    {
-        vetor[i] = rand() % tamanho;
-    }
-
-    return vetor;
-}
-
-void liberarVetor(int *array)
-{
-    free(array);
-}
-
-void imprimirVetor(int vetor[], int tamanho)
-{
-    for (int i = 0; i < tamanho; i++)
-    {
-        printf("%d ", vetor[i]);
-    }
-    printf("\n");
-}
-
-void inverteVetor(int *array, int tamanho)
-{
-    for (int i = 0; i < tamanho / 2; i++)
-    {
-        int temp = array[i];
-        array[i] = array[tamanho - i - 1];
-        array[tamanho - i - 1] = temp;
     }
 }

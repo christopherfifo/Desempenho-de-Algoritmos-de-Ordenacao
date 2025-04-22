@@ -4,13 +4,64 @@
 #include "algoOrdena.h"
 #include "algoritmosOrdenacao.h"
 
+#define ordena
+
 int slcAlgoritmo;
 int slcQuantidade;
 
-void menuprincipal()
+void menuquantidade()
 {
+    printf("//////////////////\n");
+    printf("ESCOLHA A QUANTIDADE DE ELEMENTOS\n");
+    printf("//////////////////\n");
+    printf("1 - 10.000\n");
+    printf("2 - 50.000\n");
+    printf("3 - 100.000\n");
+    printf("4 - 200.000\n");
+    printf("5 - 500.000\n");
+    printf("6 - 1.000.000\n");
+    printf("7 - voltar para o menu principal\n");
+    scanf("%d", &slcQuantidade);
 
-    int vetorInvertido = NULL;
+    switch(slcQuantidade)
+    {
+    case 1:
+        slcQuantidade = 10000;
+        break;
+    case 2:
+        slcQuantidade = 50000;
+        break;
+    case 3:
+        slcQuantidade = 100000;
+        break;
+    case 4:
+        slcQuantidade = 200000;
+        break;
+    case 5:
+        slcQuantidade = 500000;
+        break;
+    case 6:
+        slcQuantidade = 1000000;
+        break;
+    case 7:
+        menuprincipal();
+        break;
+    default:
+        printf("Opcao invalida. Tente novamente.\n");
+        menuquantidade();
+        break;
+    }
+    printf("A quantidade de elementos escolhida foi: %d\n", slcQuantidade);
+}
+
+int menuprincipal()
+{
+    int *vetor = (int *)malloc(slcQuantidade * sizeof(int));
+    if (vetor == NULL)
+    {
+        printf("Erro ao alocar memória para o vetor.\n");
+        return NULL;
+    }
 
     printf("///////////////////\n");
     printf("MENU PRINCIPAL\n");
@@ -36,231 +87,126 @@ void menuprincipal()
     // Bubble Sort
     case 1:
     {
-        menuquantidade(slcQuantidade);
-
-        double tempos[10];
-        for (int i = 0; i < 10; i++)
-        {
-            int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL)
-            {
-                printf("Erro ao alocar memória\n");
-                return;
+        double TEMPOS[12];
+        for(int i = 0; i < 12; i++){
+            if(i == 10){
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                bubbleSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
             }
-
-            TIME_IT(bubbleSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
-
-            liberarVetor(vetor);
+            if(i == 11){
+                inverteVetor(vetor, slcQuantidade);
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                bubbleSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
+            }
+            criaVetor(vetor, slcQuantidade);
+            //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+            bubbleSort(vetor, slcQuantidade);
+            // TEMPOS[i] = tempo da funcao de tempo
         }
-
-        int *vetor = criaVetor(slcQuantidade);
-        if (vetor == NULL)
-        {
-            printf("Erro ao alocar memória\n");
-            return;
-        }
-
-        bubbleSort(vetor, slcQuantidade, &vetorInvertido);
-        liberarVetor(vetor);
-
-        double media = mediaTempo(tempos, 10);
-        double melhor = tempos[0], pior = tempos[0];
-        double tempoTotal = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            tempoTotal += tempos[i];
-            if (tempos[i] < melhor) melhor = tempos[i];
-            if (tempos[i] > pior) pior = tempos[i];
-        }
-
-        salvaResultados("BubbleSort", slcQuantidade, tempoTotal, media, melhor, pior);
-        exibirAlgoritmo("BubbleSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
-
-
-
     // Insertion Sort
-        case 2:
-        {
-            menuquantidade(slcQuantidade);
-
-            double tempos[10];
-            for (int i = 0; i < 10; i++)
-            {
-                int *vetor = criaVetor(slcQuantidade);
-                if (vetor == NULL)
-                {
-                    printf("Erro ao alocar memória\n");
-                    return;
-                }
-
-                TIME_IT(insertionSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
-
-                liberarVetor(vetor);
+    case 2:
+    {
+        double TEMPOS[12];
+        for(int i = 0; i < 12; i++){
+            if(i == 10){
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                insertSort(vetor, 0, slcQuantidade-1);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
             }
-
-            int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL)
-            {
-                printf("Erro ao alocar memória\n");
-                return;
+            if(i == 11){
+                inverteVetor(vetor, slcQuantidade);
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                insertSort(vetor, 0, slcQuantidade-1);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
             }
-
-            insertionSort(vetor, slcQuantidade, &vetorInvertido);
-            liberarVetor(vetor);
-
-            double media = mediaTempo(tempos, 10);
-            double melhor = tempos[0], pior = tempos[0];
-            double tempoTotal = 0;
-            for (int i = 0; i < 10; i++)
-            {
-                tempoTotal += tempos[i];
-                if (tempos[i] < melhor) melhor = tempos[i];
-                if (tempos[i] > pior) pior = tempos[i];
-            }
-
-            salvaResultados("InsertionSort", slcQuantidade, tempoTotal, media, melhor, pior);
-            exibirAlgoritmo("InsertionSort", slcQuantidade, tempoTotal, media, melhor, pior);
+            criaVetor(vetor, slcQuantidade);
+            //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+            insertSort(vetor, 0, slcQuantidade-1);
+            // TEMPOS[i] = tempo da funcao de tempo
         }
-        break;
-
-
+    }
+    break;
     // Selection Sort
     case 3:
     {
-        menuquantidade(slcQuantidade);
-
-        double tempos[10];
-        for (int i = 0; i < 10; i++)
-        {
-            int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL)
-            {
-                printf("Erro ao alocar memória\n");
-                return;
+        double TEMPOS[12];
+        for(int i = 0; i < 12; i++){
+            if(i == 10){
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                selectionSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
             }
-
-            TIME_IT(selectionSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
-
-            liberarVetor(vetor);
+            if(i == 11){
+                inverteVetor(vetor, slcQuantidade);
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                selectionSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
+            }
+            criaVetor(vetor, slcQuantidade);
+            //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+            selectionSort(vetor, slcQuantidade);
+            // TEMPOS[i] = tempo da funcao de tempo
         }
-
-        int *vetor = criaVetor(slcQuantidade);
-        if (vetor == NULL)
-        {
-            printf("Erro ao alocar memória\n");
-            return;
-        }
-
-        selectionSort(vetor, slcQuantidade, &vetorInvertido);
-        liberarVetor(vetor);
-
-        double media = mediaTempo(tempos, 10);
-        double melhor = tempos[0], pior = tempos[0];
-        double tempoTotal = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            tempoTotal += tempos[i];
-            if (tempos[i] < melhor) melhor = tempos[i];
-            if (tempos[i] > pior) pior = tempos[i];
-        }
-
-        salvaResultados("SelectionSort", slcQuantidade, tempoTotal, media, melhor, pior);
-        exibirAlgoritmo("SelectionSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
-
-
-
     // Shell Sort
     case 4:
     {
-        menuquantidade(slcQuantidade);
-
-        double tempos[10];
-        for (int i = 0; i < 10; i++)
-        {
-            int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL)
-            {
-                printf("Erro ao alocar memória\n");
-                return;
+        double TEMPOS[12];
+        for(int i = 0; i < 12; i++){
+            if(i == 10){
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                ShellSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
             }
-
-            TIME_IT(ShellSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
-
-            liberarVetor(vetor);
+            if(i == 11){
+                inverteVetor(vetor, slcQuantidade);
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                ShellSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
+            }
+            criaVetor(vetor, slcQuantidade);
+            //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+            ShellSort(vetor, slcQuantidade);
+            // TEMPOS[i] = tempo da funcao de tempo
         }
-
-        int *vetor = criaVetor(slcQuantidade);
-        if (vetor == NULL)
-        {
-            printf("Erro ao alocar memória\n");
-            return;
-        }
-
-        ShellSort(vetor, slcQuantidade, &vetorInvertido);
-        liberarVetor(vetor);
-
-        double media = mediaTempo(tempos, 10);
-        double melhor = tempos[0], pior = tempos[0];
-        double tempoTotal = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            tempoTotal += tempos[i];
-            if (tempos[i] < melhor) melhor = tempos[i];
-            if (tempos[i] > pior) pior = tempos[i];
-        }
-
-        salvaResultados("ShellSort", slcQuantidade, tempoTotal, media, melhor, pior);
-        exibirAlgoritmo("ShellSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
-
-
     // Merge Sort
     case 5:
     {
-        menuquantidade(slcQuantidade);
-
-        double tempos[10];
-        for (int i = 0; i < 10; i++)
-        {
-            int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL)
-            {
-                printf("Erro ao alocar memória\n");
-                return;
+        double TEMPOS[12];
+        for(int i = 0; i < 12; i++){
+            if(i == 10){
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                mergesort(vetor, 0, slcQuantidade-1);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
             }
-
-            TIME_IT(mergesort(vetor, 0, slcQuantidade - 1, &vetorInvertido), tempos[i]);
-
-            liberarVetor(vetor);
+            if(i == 11){
+                inverteVetor(vetor, slcQuantidade);
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                mergesort(vetor, 0, slcQuantidade-1);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
+            }
+            criaVetor(vetor, slcQuantidade);
+            //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+            mergesort(vetor, 0, slcQuantidade-1);
+            // TEMPOS[i] = tempo da funcao de tempo
         }
-
-        int *vetor = criaVetor(slcQuantidade);
-        if (vetor == NULL)
-        {
-            printf("Erro ao alocar memória\n");
-            return;
-        }
-
-        mergesort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
-        liberarVetor(vetor);
-
-        double media = mediaTempo(tempos, 10);
-        double melhor = tempos[0], pior = tempos[0];
-        double tempoTotal = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            tempoTotal += tempos[i];
-            if (tempos[i] < melhor) melhor = tempos[i];
-            if (tempos[i] > pior) pior = tempos[i];
-        }
-
-        salvaResultados("MergeSort", slcQuantidade, tempoTotal, media, melhor, pior);
-        exibirAlgoritmo("MergeSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
 
@@ -268,90 +214,52 @@ void menuprincipal()
     // Quick Sort
     case 6:
     {
-        menuquantidade(slcQuantidade);
-
-        double tempos[10];
-        for (int i = 0; i < 10; i++)
-        {
-            int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL)
-            {
-                printf("Erro ao alocar memória\n");
-                return;
+        double TEMPOS[12];
+        for(int i = 0; i < 12; i++){
+            if(i == 10){
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                quickSort(vetor, 0, slcQuantidade-1);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
             }
-
-            TIME_IT(quickSort(vetor, 0, slcQuantidade - 1, &vetorInvertido), tempos[i]);
-
-            liberarVetor(vetor);
+            if(i == 11){
+                inverteVetor(vetor, slcQuantidade);
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                quickSort(vetor, 0, slcQuantidade-1);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
+            }
+            criaVetor(vetor, slcQuantidade);
+            //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+            quickSort(vetor, 0, slcQuantidade-1);
+            // TEMPOS[i] = tempo da funcao de tempo
         }
-
-        int *vetor = criaVetor(slcQuantidade);
-        if (vetor == NULL)
-        {
-            printf("Erro ao alocar memória\n");
-            return;
-        }
-
-        quickSort(vetor, 0, slcQuantidade - 1, &vetorInvertido);
-        liberarVetor(vetor);
-
-        double media = mediaTempo(tempos, 10);
-        double melhor = tempos[0], pior = tempos[0];
-        double tempoTotal = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            tempoTotal += tempos[i];
-            if (tempos[i] < melhor) melhor = tempos[i];
-            if (tempos[i] > pior) pior = tempos[i];
-        }
-
-        salvaResultados("QuickSort", slcQuantidade, tempoTotal, media, melhor, pior);
-        exibirAlgoritmo("QuickSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
 
     // Heap Sort
     case 7:
     {
-        menuquantidade(slcQuantidade);
-
-        double tempos[10];
-        for (int i = 0; i < 10; i++)
-        {
-            int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL)
-            {
-                printf("Erro ao alocar memória\n");
-                return;
+        double TEMPOS[12];
+        for(int i = 0; i < 12; i++){
+            if(i == 10){
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                heapSortAscending(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
             }
-
-            TIME_IT(heapSortAscending(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
-
-            liberarVetor(vetor);
+            if(i == 11){
+                inverteVetor(vetor, slcQuantidade);
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                heapSortAscending(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
+            }
+            criaVetor(vetor, slcQuantidade);
+            //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+            heapSortAscending(vetor, slcQuantidade);
+            // TEMPOS[i] = tempo da funcao de tempo
         }
-
-        int *vetor = criaVetor(slcQuantidade);
-        if (vetor == NULL)
-        {
-            printf("Erro ao alocar memória\n");
-            return;
-        }
-
-        heapSortAscending(vetor, slcQuantidade, &vetorInvertido);
-        liberarVetor(vetor);
-
-        double media = mediaTempo(tempos, 10);
-        double melhor = tempos[0], pior = tempos[0];
-        double tempoTotal = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            tempoTotal += tempos[i];
-            if (tempos[i] < melhor) melhor = tempos[i];
-            if (tempos[i] > pior) pior = tempos[i];
-        }
-
-        salvaResultados("HeapSort", slcQuantidade, tempoTotal, media, melhor, pior);
-        exibirAlgoritmo("HeapSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
 
@@ -359,45 +267,26 @@ void menuprincipal()
     // Bucket Sort
     case 8:
     {
-        menuquantidade(slcQuantidade);
-
-        double tempos[10];
-        for (int i = 0; i < 10; i++)
-        {
-            int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL)
-            {
-                printf("Erro ao alocar memória\n");
-                return;
+        double TEMPOS[12];
+        for(int i = 0; i < 12; i++){
+            if(i == 10){
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                bucketSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
             }
-
-            TIME_IT(bucketSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
-
-            liberarVetor(vetor);
+            if(i == 11){
+                inverteVetor(vetor, slcQuantidade);
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                bucketSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
+            }
+            criaVetor(vetor, slcQuantidade);
+            //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+            bucketSort(vetor, slcQuantidade);
+            // TEMPOS[i] = tempo da funcao de tempo
         }
-
-        int *vetor = criaVetor(slcQuantidade);
-        if (vetor == NULL)
-        {
-            printf("Erro ao alocar memória\n");
-            return;
-        }
-
-        bucketSort(vetor, slcQuantidade, &vetorInvertido);
-        liberarVetor(vetor);
-
-        double media = mediaTempo(tempos, 10);
-        double melhor = tempos[0], pior = tempos[0];
-        double tempoTotal = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            tempoTotal += tempos[i];
-            if (tempos[i] < melhor) melhor = tempos[i];
-            if (tempos[i] > pior) pior = tempos[i];
-        }
-
-        salvaResultados("BucketSort", slcQuantidade, tempoTotal, media, melhor, pior);
-        exibirAlgoritmo("BucketSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
 
@@ -405,45 +294,26 @@ void menuprincipal()
     // Radix Sort
      case 9:
     {
-        menuquantidade(slcQuantidade);
-
-        double tempos[10];
-        for (int i = 0; i < 10; i++)
-        {
-            int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL)
-            {
-                printf("Erro ao alocar memória\n");
-                return;
+        double TEMPOS[12];
+        for(int i = 0; i < 12; i++){
+            if(i == 10){
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                radixSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
             }
-
-            TIME_IT(radixSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
-
-            liberarVetor(vetor);
+            if(i == 11){
+                inverteVetor(vetor, slcQuantidade);
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                radixSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
+            }
+            criaVetor(vetor, slcQuantidade);
+            //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+            radixSort(vetor, slcQuantidade);
+            // TEMPOS[i] = tempo da funcao de tempo
         }
-
-        int *vetor = criaVetor(slcQuantidade);
-        if (vetor == NULL)
-        {
-            printf("Erro ao alocar memória\n");
-            return;
-        }
-
-        radixSort(vetor, slcQuantidade, &vetorInvertido);
-        liberarVetor(vetor);
-
-        double media = mediaTempo(tempos, 10);
-        double melhor = tempos[0], pior = tempos[0];
-        double tempoTotal = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            tempoTotal += tempos[i];
-            if (tempos[i] < melhor) melhor = tempos[i];
-            if (tempos[i] > pior) pior = tempos[i];
-        }
-
-        salvaResultados("RadixSort", slcQuantidade, tempoTotal, media, melhor, pior);
-        exibirAlgoritmo("RadixSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
 
@@ -451,97 +321,52 @@ void menuprincipal()
     // Counting Sort
     case 10:
     {
-        menuquantidade(slcQuantidade);
-
-        double tempos[10];
-        for (int i = 0; i < 10; i++)
-        {
-            int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL)
-            {
-                printf("Erro ao alocar memória\n");
-                return;
+        double TEMPOS[12];
+        for(int i = 0; i < 12; i++){
+            if(i == 10){
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                countingSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
             }
-
-            TIME_IT(countingSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
-
-            liberarVetor(vetor);
-        }
-
-        int *vetor = criaVetor(slcQuantidade);
-        if (vetor == NULL)
-        {
-            printf("Erro ao alocar memória\n");
-            return;
-        }
-
-        countingSort(vetor, slcQuantidade, &vetorInvertido);
-
-        liberarVetor(vetor);
-
-        double media = mediaTempo(tempos, 10);
-        double melhor = tempos[0], pior = tempos[0];
-        double tempoTotal = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            tempoTotal += tempos[i];
-
-            if (i > 0)
-            {
-                if (tempos[i] < melhor)
-                    melhor = tempos[i];
-                if (tempos[i] > pior)
-                    pior = tempos[i];
+            if(i == 11){
+                inverteVetor(vetor, slcQuantidade);
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                countingSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
             }
+            criaVetor(vetor, slcQuantidade);
+            //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+            countingSort(vetor, slcQuantidade);
+            // TEMPOS[i] = tempo da funcao de tempo
         }
-
-        salvaResultados("CountingSort", slcQuantidade, tempoTotal, media, melhor, pior);
-        exibirAlgoritmo("CountingSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
 
     // Tim Sort
     case 11:
     {
-        menuquantidade(slcQuantidade);
-
-        double tempos[10];
-        for (int i = 0; i < 10; i++)
-        {
-            int *vetor = criaVetor(slcQuantidade);
-            if (vetor == NULL)
-            {
-                printf("Erro ao alocar memória\n");
-                return;
+        double TEMPOS[12];
+        for(int i = 0; i < 12; i++){
+            if(i == 10){
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                timSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
             }
-
-            TIME_IT(timSort(vetor, slcQuantidade, &vetorInvertido), tempos[i]);
-
-            liberarVetor(vetor);
+            if(i == 11){
+                inverteVetor(vetor, slcQuantidade);
+                //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+                timSort(vetor, slcQuantidade);
+                // TEMPOS[i] = tempo da funcao de tempo
+                continue;
+            }
+            criaVetor(vetor, slcQuantidade);
+            //FUNÇÃO DE TEMPO ENTRA AQUI... eu acho
+            timSort(vetor, slcQuantidade);
+            // TEMPOS[i] = tempo da funcao de tempo
         }
-
-        int *vetor = criaVetor(slcQuantidade);
-        if (vetor == NULL)
-        {
-            printf("Erro ao alocar memória\n");
-            return;
-        }
-
-        timSort(vetor, slcQuantidade, &vetorInvertido);
-        liberarVetor(vetor);
-
-        double media = mediaTempo(tempos, 10);
-        double melhor = tempos[0], pior = tempos[0];
-        double tempoTotal = 0;
-        for (int i = 0; i < 10; i++)
-        {
-            tempoTotal += tempos[i];
-            if (tempos[i] < melhor) melhor = tempos[i];
-            if (tempos[i] > pior) pior = tempos[i];
-        }
-
-        salvaResultados("TimSort", slcQuantidade, tempoTotal, media, melhor, pior);
-        exibirAlgoritmo("TimSort", slcQuantidade, tempoTotal, media, melhor, pior);
     }
     break;
 
@@ -556,49 +381,26 @@ void menuprincipal()
         menuprincipal();
         break;
     }
+    for(int j = 0; j < 10; j++){
+        printf(" %d", vetor[j]);
+    }
 }
 
-void menuquantidade()
-{
-    printf("//////////////////\n");
-    printf("ESCOLHA A QUANTIDADE DE ELEMENTOS\n");
-    printf("//////////////////\n");
-    printf("1 - 10.000\n");
-    printf("2 - 50.000\n");
-    printf("3 - 100.000\n");
-    printf("4 - 200.000\n");
-    printf("5 - 500.000\n");
-    printf("6 - 1.000.000\n");
-    printf("7 - voltar para o menu principal\n");
-    scanf("%d", &slcQuantidade);
 
-    switch (slcQuantidade)
+// FUNÇÕOES AUXILIARES
+void inverteVetor(int *array, int tamanho)
+{
+    for (int i = 0; i < tamanho / 2; i++)
     {
-    case 1:
-        slcQuantidade = 10000;
-        break;
-    case 2:
-        slcQuantidade = 50000;
-        break;
-    case 3:
-        slcQuantidade = 100000;
-        break;
-    case 4:
-        slcQuantidade = 200000;
-        break;
-    case 5:
-        slcQuantidade = 500000;
-        break;
-    case 6:
-        slcQuantidade = 1000000;
-        break;
-    case 7:
-        menuprincipal();
-        break;
-    default:
-        printf("Opcao invalida. Tente novamente.\n");
-        menuquantidade(slcQuantidade);
-        break;
+        int temp = array[i];
+        array[i] = array[tamanho - i - 1];
+        array[tamanho - i - 1] = temp;
     }
-    printf("A quantidade de elementos escolhida foi: %d\n", slcQuantidade);
+}
+void criaVetor(int *vetor, int tamanho)
+{
+    for (int i = 0; i < tamanho; i++)
+    {
+        vetor[i] = rand() % tamanho;
+    }
 }
