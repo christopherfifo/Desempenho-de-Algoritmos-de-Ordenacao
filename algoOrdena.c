@@ -15,34 +15,34 @@ void menuquantidade()
     printf("//////////////////\n");
     printf("ESCOLHA A QUANTIDADE DE ELEMENTOS\n");
     printf("//////////////////\n");
-    printf("1 - 1.000.000\n");
-    printf("2 - 5.000.000\n");       
-    printf("3 - 10.000.000\n");     
-    printf("4 - 20.000.000\n");      
-    printf("5 - 50.000.000\n");      
-    printf("6 - 100.000.000\n");     
+    printf("1 - 10.000\n");
+    printf("2 - 50.000\n");       
+    printf("3 - 100.000\n");     
+    printf("4 - 200.000\n");      
+    printf("5 - 500.000\n");      
+    printf("6 - 1.000.000\n");     
     printf("7 - Voltar para o menu principal\n");
     scanf("%d", &slcQuantidade);
 
     switch (slcQuantidade)
     {
     case 1:
-        slcQuantidade = 1000000;     
+        slcQuantidade = 10000;     
         break;
     case 2:
-        slcQuantidade = 5000000;    
+        slcQuantidade = 50000;    
         break;
     case 3:
-        slcQuantidade = 10000000;   
+        slcQuantidade = 100000;   
         break;
     case 4:
-        slcQuantidade = 20000000;    
+        slcQuantidade = 200000;    
         break;
     case 5:
-        slcQuantidade = 50000000;   
+        slcQuantidade = 500000;   
         break;
     case 6:
-        slcQuantidade = 100000000;   
+        slcQuantidade = 1000000;   
         break;
     case 7:
         slcQuantidade = 0;
