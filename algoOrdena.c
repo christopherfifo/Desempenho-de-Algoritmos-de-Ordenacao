@@ -502,6 +502,9 @@ int menuprincipal()
         menuprincipal();
         break;
     }
+
+    free(vetor);
+    return 0;
 }
 
 // FUNÇÕOES AUXILIARES
