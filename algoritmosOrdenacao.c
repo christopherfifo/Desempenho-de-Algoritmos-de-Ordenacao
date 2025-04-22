@@ -6,8 +6,6 @@
 void countingSort(int inputArray[], int numElementos)
 {
 
-//commit aqui tem que por a função de tempo
-
     // 1º Passo:
     // Encontrar o maior número no array
     int maiorNumero = 0;
