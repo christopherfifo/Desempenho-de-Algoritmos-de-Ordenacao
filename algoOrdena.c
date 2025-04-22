@@ -520,32 +520,27 @@ double calculaTempo(struct timeval tempoInicial, struct timeval tempoFinal)
     return fim - inicio;
 }
 
-void exibirTempos(double TEMPOS[])
+void exibirTempos(double TEMPOS[]) 
 {
-    double melhor = TEMPOS[0];
-    double pior = TEMPOS[0];
     double total = 0.0;
+    double media = 0.0;
 
-    for (int i = 0; i < 12; i++)
+    
+    for (int i = 0; i < 12; i++) 
     {
-        printf("Execucao %d: %.6f segundos\n", i + 1, TEMPOS[i]);
-
-        if (TEMPOS[i] < melhor)
-        {
-            melhor = TEMPOS[i];
-        }
-        if (TEMPOS[i] > pior)
-        {
-            pior = TEMPOS[i];
-        }
-
         total += TEMPOS[i];
+        if (i < 10) 
+        {
+            media += TEMPOS[i];
+        }
     }
+    media /= 10;  
 
-    printf("\n\n");
-    printf("Melhor tempo: %.6f segundos\n", melhor);
-    printf("Pior tempo: %.6f segundos\n", pior);
-    printf("Tempo medio: %.6f segundos\n", total / 12);
-    printf("Tempo total: %.6f segundos\n", total);
+    
+    printf("Melhor tempo: %.6f segundos\n", TEMPOS[10]);  
+    printf("Pior tempo: %.6f segundos\n", TEMPOS[11]);    
+    printf("Tempo medio: %.6f segundos\n", media);        
+    printf("Tempo total: %.6f segundos\n", total);        
+    
     system("pause");
 }
